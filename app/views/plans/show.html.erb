@@ -1,9 +1,11 @@
-<p id="notice"><%= notice %></p>
+<!--p id="notice"><%= notice %></p>
 
 <p>
   <strong>Name:</strong>
   <%= @plan.name %>
 </p>
+
+
 
 <table>
 <tr>
@@ -23,4 +25,116 @@
 <% end %>
 </table>
 <%= link_to 'Edit', edit_plan_path(@plan) %> |
-<%= link_to 'Back', plans_path %>
+<%= link_to 'Back', plans_path %>-->
+
+<!-- tape.html
+	Noah Shinabarger, Timothy Smith, and Emily Wolf
+	Project #2
+	February 14th, 2017 -->
+	
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="ENTAPE (Emily, Noah, Timmy Academic Planning Environment">
+		<meta name="author" content="Noah Shinabarger, Timothy Smith, and Emily Wolf">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+		<title>NEWTAPE</title>
+
+		<!-- JQUERYUI CSS -->
+		<!--link href="vendor/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css">
+		<link href="vendor/jquery-ui/jquery-ui.modal.css" rel="stylesheet" type="text/css"-->
+						
+		<!-- TAPE CSS -->
+		<%= stylesheet_link_tag("tape.css") %>
+
+		<!-- Custom Fonts -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+
+	<body onresize="resizeWindow()">
+	<div class="wrapper">
+		<div id="headerContainer">
+			<div class="headerContent">
+				<img class="logo" src="img/TAPElogo.png" style="width:35%; max-width: 500px; min-width: 200px" alt=""/>
+				<div id="planHeading"></div>	
+				<div id="headerButtonWrapper">
+					<div class="dropdown">
+					  <div onclick="myFunction()" id="options-btn" class="button">OPTIONS <span class="fa fa-caret-down"> </span></div>
+					  <div id="myDropdown" class="dropdown-content">
+						<div class="button" onclick="toggleSummer(this)"> <span class="fa fa-arrows-h"></span> Toggle Summer Semesters </div>
+						<div class="button" onclick="addYear()"> <span class="fa fa-plus-circle"></span> Add Year </div>
+						<div class="button" onclick="deleteYear()"> <span class="fa fa-minus-circle"></span> Delete Year </div>
+						<div class="button button-disabled" onclick="savePlan()"> <span class="fa fa-floppy-o"></span> Save Plan </div>
+						<div class="button button-disabled" onclick="switchPlan()"> <span class="fa fa-exchange"></span> Switch Plan </div>
+						<div class="button button-disabled" onclick="newPlan()">  <span class="fa fa-plus-square"></span> New Plan </div>
+					  </div>
+					</div>
+					<a href="http://judah.cedarville.edu"><div class="button">JUDAH</div></a>
+					<a ><div href="../cs3220.html" class="button">HOME PAGE</div></a>
+					
+				</div>	
+			</div>  	
+		</div>
+		
+		<div id="bodyContainer">
+			<div id="leftContainer">
+				<div id="leftScroller"> &#9664 </div>
+				<div id="rightScroller"> &#9654 </div>
+				<div class="wrapper">
+					<div id="planner"><!-- JavaScript dynamic load goes in here --></div>
+					<div id="finderWrapper">
+						<div id="horizontalGrabber"><div id="horizontalLine"> </div></div>
+						<div id="finder">
+							<div class="sectionHeader"> FINDER </div>
+							<div id="classFinder">
+								<input type="text" id="finderInput" onkeyup="filterSearch()" placeholder="Search for class..." title="Type in a search">
+								<div id="tablePane">
+									<table id="finderTable" class="tablesorter">
+										<thead>
+											<tr style="border-bottom: 1pt solid black; font-size: 11pt">
+												<th style="text-align: left; padding-left: 25px; width: 30%">Name</th>
+												<th style="text-align: left; width: 50%">Title</th>
+												<th style="text-align: center; width: 20%">Credits</th>
+											</tr>
+										</thead>
+										<tbody id="finderTableBody">
+										
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="rightContainer">
+				<div class="wrapper">
+					<div id="verticalGrabber">
+						<div id="verticalLine"></div>
+					</div>
+					<div id="rightPanelWrapper">
+						<div id="requirements">
+							<div class="sectionHeader"> REQUIREMENTS </div>
+							<div id="accordion">
+								<h3 style="font-weight: bold">Emily Wolf</h3>
+								<div>SSN: 230-76-3811</div>
+								<h3 style="font-weight: bold">Noah Shinabarger</h3>
+								<div>SSN: 555-55-5554</div>
+								<h3 style="font-weight: bold">Timothy Smith II</h3>
+								<div>SSN: 11-13-1995</div>							
+							</div>
+							
+						</div>
+						<div id="validator">
+							<div class="sectionHeader"> VALIDATION STATUS </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</body>
+</html>
+

@@ -10,19 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170412182548) do
+ActiveRecord::Schema.define(version: 20170412225306) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "credits"
+    t.string   "codeDept"
+    t.integer  "codeNum"
   end
 
   create_table "plans", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.integer  "user_id"
+    t.integer  "catalogYear"
+    t.integer  "currYear"
+    t.integer  "currSemester"
+    t.string   "majorName"
   end
 
   create_table "term_courses", force: :cascade do |t|
