@@ -25,3 +25,34 @@ user2.save!
 Plan.create(user_id:user1.id, name:"Plan 1")
 Plan.create(user_id:user1.id, name:"Plan 2")
 
+Term.create(plan_id:1,semester:"Fall",year:2020)
+Term.create(plan_id:1,semester:"Spring",year:2021)
+Term.create(plan_id:1,semester:"Fall",year:2021)
+Term.create(plan_id:1,semester:"Spring",year:2022)
+Term.create(plan_id:1,semester:"Fall",year:2022)
+Term.create(plan_id:1,semester:"Spring",year:2023)
+Term.create(plan_id:1,semester:"Fall",year:2023)
+Term.create(plan_id:1,semester:"Spring",year:2024)
+
+Course.create(name:"Calculus 1")
+Course.create(name:"Calculus 2")
+Course.create(name:"C++ Programming")
+Course.create(name:"Object-Oriented Design")
+Course.create(name:"Web Applications")
+Course.create(name:"Introduction to the Humanities")
+
+TermCourse.create(term_id:1,course_id:1)
+TermCourse.create(term_id:1,course_id:2)
+TermCourse.create(term_id:1,course_id:3)
+TermCourse.create(term_id:1,course_id:4)
+TermCourse.create(term_id:1,course_id:5)
+TermCourse.create(term_id:1,course_id:6)
+
+
+
+
+
+
+
+
+

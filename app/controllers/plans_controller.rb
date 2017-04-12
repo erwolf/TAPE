@@ -11,6 +11,7 @@ class PlansController < ApplicationController
   # GET /plans/1
   # GET /plans/1.json
   def show
+    @coolVar = "SPACE!"
   end
 
   # GET /plans/new

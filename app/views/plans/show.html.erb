@@ -5,5 +5,22 @@
   <%= @plan.name %>
 </p>
 
+<table>
+<tr>
+<th> Term </th>
+</tr>
+<% @plan.terms.each do |term| %>
+
+  <tr>
+    <td> <%= term.semester+" "+term.year.to_s %></td>
+    
+    <% @courses = Course.joins("INNER JOIN term_courses ON term_courses.course_id=courses.id").where("term_id = " + term.id.to_s) %>
+
+    <% @courses.each do |course| %>
+   	<td> <%= course.name %> </td>
+    <% end %>
+
+<% end %>
+</table>
 <%= link_to 'Edit', edit_plan_path(@plan) %> |
 <%= link_to 'Back', plans_path %>
