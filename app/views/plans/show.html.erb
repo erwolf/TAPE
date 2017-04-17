@@ -1,7 +1,6 @@
-
 <!-- tape.html
 	Noah Shinabarger, Timothy Smith, and Emily Wolf
-	Project #2
+	Project #6
 	February 14th, 2017 -->
 	
 <!DOCTYPE html>
@@ -29,7 +28,7 @@
 	<div class="wrapper">
 		<div id="headerContainer">
 			<div class="headerContent">
-				<%= image_tag("rss.jpg", :alt => "logo please work", :class="logo", :style => style="width:35%; max-width: 500px; min-width: 200px") %>
+				<%= image_tag("TAPElogo.png", :alt=>"logo please work", :class=>"logo", :style=>"width:35%; max-width: 500px; min-width: 200px") %>
 				<!--img class="logo" src="img/TAPElogo.png" style="width:35%; max-width: 500px; min-width: 200px" alt=""/-->
 				<div id="planHeading"></div>	
 				<div id="headerButtonWrapper">
@@ -62,7 +61,7 @@
 						<div id="finder">
 							<div class="sectionHeader"> FINDER </div>
 							<div id="classFinder">
-								<input type="text" id="finderInput" onkeyup="filterSearch()" placeholder="Search for class..." title="Type in a search">
+								<input type="text" id="finderInput" onkeyup="filterSearch()" placeholder="Search..." title="Type in a search">
 								<div id="tablePane">
 									<table id="finderTable" class="tablesorter">
 										<thead>
@@ -107,13 +106,13 @@
 				</div>
 			</div>
 		</div>
-	</div>
+    </div>
+
 <table>
 <% @plan.terms.each do |term| %>
 
   <tr>
     <td> <%= term.semester+" "+term.year.to_s %></td>
-    
     <% @courses = Course.joins("INNER JOIN term_courses ON term_courses.course_id=courses.id").where("term_id = " + term.id.to_s) %>
 
     <% @courses.each do |course| %>
@@ -122,7 +121,21 @@
 
 <% end %>
 </table>
+
 <%= link_to 'Back', plans_path %>
+
+
+
+<%= javascript_include_tag('tape_js/display_fns.js')%>
+<%= javascript_include_tag('tape_js/dropdown_fns.js')%>
+<%= javascript_include_tag('tape_js/filter_table.js')%>
+<%= javascript_include_tag('tape_js/get_json.js')%>
+<%= javascript_include_tag('tape_js/planner_definitions.js')%>
+<%= javascript_include_tag('tape_js/scroller_fns.js')%>
+<%= javascript_include_tag('tape_js/on_ready.js')%>
+
+<script> printData(<%= @plan.to_json.to_s.html_safe %>)</script>
+
 	</body>
 </html>
 

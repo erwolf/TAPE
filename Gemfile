@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'json'
 # jquery stuff
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'

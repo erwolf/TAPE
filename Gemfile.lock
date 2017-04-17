@@ -75,6 +75,7 @@ GEM
       turbolinks
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
+    json (2.0.4)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -177,6 +178,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
+  json
   pg (= 0.18.4)
   puma (~> 3.0)
   rails (~> 5.0.2)
