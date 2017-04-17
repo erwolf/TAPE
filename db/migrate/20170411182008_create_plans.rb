@@ -4,6 +4,7 @@ class CreatePlans < ActiveRecord::Migration[5.0]
       t.string :name
       t.integer :currSemester
       t.integer :catalogYear
+      t.string :majorName
       t.integer :currYear
       t.integer :user_id
       t.timestamps
