@@ -28,14 +28,18 @@ Year.create(year:2021,plan_id:1) #2
 Year.create(year:2022,plan_id:1) #3
 Year.create(year:2023,plan_id:1) #4
 
-Semester.create(term:'Fall',year_id:1,plan_id:1) #1
-Semester.create(term:'Spring',year_id:1,plan_id:1) #2
-Semester.create(term:'Fall',year_id:2,plan_id:1) #3
-Semester.create(term:'Spring',year_id:2,plan_id:1) #4
-Semester.create(term:'Fall',year_id:3,plan_id:1) #5
-Semester.create(term:'Spring',year_id:3,plan_id:1) #6
-Semester.create(term:'Fall',year_id:4,plan_id:1) #7
-Semester.create(term:'Spring',year_id:4,plan_id:1) #8
+Semester.create(term:0,year_id:1,plan_id:1) #1
+Semester.create(term:1,year_id:1,plan_id:1) #2
+Semester.create(term:1,year_id:1,plan_id:1) #3
+Semester.create(term:0,year_id:2,plan_id:1) #4
+Semester.create(term:1,year_id:2,plan_id:1) #5
+Semester.create(term:1,year_id:2,plan_id:1) #6
+Semester.create(term:0,year_id:3,plan_id:1) #7
+Semester.create(term:1,year_id:3,plan_id:1) #8
+Semester.create(term:1,year_id:3,plan_id:1) #9
+Semester.create(term:0,year_id:4,plan_id:1) #10
+Semester.create(term:1,year_id:4,plan_id:1) #11
+Semester.create(term:1,year_id:4,plan_id:1) #12
 
 Course.create(name:"Calculus 1", codeDept:"MATH", codeNum:1710, credits:5) #1
 Course.create(name:"Calculus 2", codeDept:"MATH", codeNum:1720, credits:5) #2
