@@ -1,0 +1,32 @@
+<header>
+<div id="headerContainer">
+			<div class="headerContent">
+				<%= image_tag("TAPElogo.png", :alt=>"logo please work", :class=>"logo", :style=>"width:35%; max-width: 500px; min-width: 200px") %>
+				<!--img class="logo" src="img/TAPElogo.png" style="width:35%; max-width: 500px; min-width: 200px" alt=""/-->
+				<% if user_signed_in?%>
+		<h3> Welcome, <%= current_user.login %></h3>
+		<%= link_to "Sign Out", destroy_user_session_path, :method=>:delete%>
+	<% else %>
+		<%= link_to "Sign In", new_user_session_path, :method=>:get%>
+		<%= link_to "Sign Up", new_user_registration_path, :method=>:get%>
+	<% end %>
+				<div id="planHeading"></div>	
+				<div id="headerButtonWrapper">
+					<div class="dropdown">
+					  <div onclick="myFunction()" id="options-btn" class="button">OPTIONS <span class="fa fa-caret-down"> </span></div>
+					  <div id="myDropdown" class="dropdown-content">
+						<div class="button" onclick="toggleSummer(this)"> <span class="fa fa-arrows-h"></span> Toggle Summer Semesters </div>
+						<div class="button" onclick="addYear()"> <span class="fa fa-plus-circle"></span> Add Year </div>
+						<div class="button" onclick="deleteYear()"> <span class="fa fa-minus-circle"></span> Delete Year </div>
+						<div class="button button-disabled" onclick="savePlan()"> <span class="fa fa-floppy-o"></span> Save Plan </div>
+						<div class="button button-disabled" onclick="switchPlan()"> <span class="fa fa-exchange"></span> Switch Plan </div>
+						<div class="button button-disabled" onclick="newPlan()">  <span class="fa fa-plus-square"></span> New Plan </div>
+					  </div>
+					</div>
+					<a href="http://judah.cedarville.edu"><div class="button">JUDAH</div></a>
+					<a ><div href="../cs3220.html" class="button">HOME PAGE</div></a>
+					
+				</div>	
+			</div>  	
+		</div>
+</header>
