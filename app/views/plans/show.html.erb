@@ -104,7 +104,7 @@
 <%= javascript_include_tag('tape_js/on_ready.js')%>
 
 <script> printData(<%= @plan.to_json.to_s.html_safe %>)</script>
-
+<script> printData(<%= @formattedPlan.to_json.to_s.html_safe %>)</script>
 	</body>
 </html>
 

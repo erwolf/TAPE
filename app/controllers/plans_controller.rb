@@ -14,10 +14,17 @@ class PlansController < ApplicationController
       # turn ruby database into json
       # route to the project 3 page with this json
       # id = 1
+     
+      @years = Year.where(plan_id: @plan['id'])
+
+        @formattedPlan = Array.new()
+
+      @years.each { |year|
+
+        @formattedPlan.push(year)
+      }
+
       
-      @years = Year.where(plan_id: :id)
-      
-          
   end
 
   # GET /plans/new
