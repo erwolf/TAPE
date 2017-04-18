@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 20170418010777) do
   create_table "semesters", force: :cascade do |t|
     t.integer "term"
     t.integer "year_id"
+    t.integer "plan_id"
+    t.index ["plan_id"], name: "index_semesters_on_plan_id"
     t.index ["year_id"], name: "index_semesters_on_year_id"
   end
 
@@ -67,7 +69,7 @@ ActiveRecord::Schema.define(version: 20170418010777) do
   end
 
   create_table "years", force: :cascade do |t|
-    t.integer  "year_id"
+    t.integer  "year"
     t.integer  "plan_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
