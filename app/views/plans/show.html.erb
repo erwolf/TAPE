@@ -105,6 +105,9 @@
 
 <script> printData(<%= @plan.to_json.to_s.html_safe %>)</script>
 <script> printData(<%= @formattedPlan.to_json.to_s.html_safe %>)</script>
+<script> displayPlan(<%= @formattedPlan.to_json.to_s.html_safe %>, true)</script>
+
+
 	</body>
 </html>
 

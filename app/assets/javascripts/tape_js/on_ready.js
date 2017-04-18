@@ -1,14 +1,14 @@
 $(document).ready(function() {
 
 
-	$.getData_Courses();
+	//$.getData_Courses();
 
-	var plan_data = $.getData_Plan();
-	var formattedPlanCourses = formatCourses(plan_data.courses);
-	var myPlan = buildPlan(plan_data.name, plan_data.catalogYear, plan_data.major, plan_data.student, formattedPlanCourses, plan_data.currTerm, plan_data.currYear);
+	//var plan_data = $.getData_Plan();
+	//var formattedPlanCourses = formatCourses(plan_data.courses);
+	//var myPlan = buildPlan(plan_data.name, plan_data.catalogYear, plan_data.major, plan_data.student, formattedPlanCourses, plan_data.currTerm, plan_data.currYear);
 
 
-	displayPlan(myPlan, true);
+	//displayPlan(myPlan, true);
 
 
 	$("#accordion").accordion({
