@@ -25,14 +25,25 @@ user2.save!
 Plan.create(user_id:user1.id, name:"Plan 1", currYear:2017, currSemester:1, majorName:"Computer Science", catalogYear:2014)
 Plan.create(user_id:user2.id, name:"Plan 2", currYear:2017, currSemester:1, majorName:"Computer Science", catalogYear:2014)
 
-Term.create(plan_id:1,semester:"Fall",year:2020)
-Term.create(plan_id:1,semester:"Spring",year:2021)
-Term.create(plan_id:1,semester:"Fall",year:2021)
-Term.create(plan_id:1,semester:"Spring",year:2022)
-Term.create(plan_id:1,semester:"Fall",year:2022)
-Term.create(plan_id:1,semester:"Spring",year:2023)
-Term.create(plan_id:1,semester:"Fall",year:2023)
-Term.create(plan_id:1,semester:"Spring",year:2024)
+Year.create(year_id:2020,plan_id:"Plan 1")
+Year.create(year_id:2021,plan_id:"Plan 1")
+Year.create(year_id:2022,plan_id:"Plan 1")
+Year.create(year_id:2023,plan_id:"Plan 1")
+Year.create(year_id:2018,plan_id:"Plan 1")
+Year.create(year_id:2019,plan_id:"Plan 1")
+Year.create(year_id:2017,plan_id:"Plan 1")
+Year.create(year_id:2016,plan_id:"Plan 1")
+Year.create(year_id:2016,plan_id:"Plan 2")
+
+
+Semester.create(term:"Spring",year:2021)
+Semester.create(term:"Fall",year:2021)
+Semester.create(term:"Fall",year:2020)
+Semester.create(term:"Spring",year:2022)
+Semester.create(term:"Fall",year:2022)
+Semester.create(term:"Spring",year:2023)
+Semester.create(term:"Fall",year:2023)
+Semester.create(term:"Spring",year:2024)
 
 Course.create(name:"Calculus 1", codeDept:"MATH", codeNum:1710, credits:5)
 Course.create(name:"Calculus 2", codeDept:"MATH", codeNum:1720, credits:5)
@@ -41,18 +52,9 @@ Course.create(name:"Object-Oriented Design", codeDept:"CS", codeNum:1220, credit
 Course.create(name:"Web Apps", codeDept:"CS", codeNum:3220, credits:3)
 Course.create(name:"Introduction to the Humanities", codeDept:"ART", codeNum:7, credits:3)
 
-TermCourse.create(term_id:1,course_id:1)
-TermCourse.create(term_id:1,course_id:2)
-TermCourse.create(term_id:1,course_id:3)
-TermCourse.create(term_id:1,course_id:4)
-TermCourse.create(term_id:1,course_id:5)
-TermCourse.create(term_id:1,course_id:6)
-
-
-
-
-
-
-
-
-
+SemesterCourse.create(semester_id:1,course_id:1)
+SemesterCourse.create(semester_id:1,course_id:2)
+SemesterCourse.create(semester_id:1,course_id:3)
+SemesterCourse.create(semester_id:1,course_id:4)
+SemesterCourse.create(semester_id:1,course_id:5)
+SemesterCourse.create(semester_id:1,course_id:6)
