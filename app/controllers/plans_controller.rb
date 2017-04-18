@@ -11,7 +11,13 @@ class PlansController < ApplicationController
   # GET /plans/1
   # GET /plans/1.json
   def show
-    @coolVar = "SPACE!"
+      # turn ruby database into json
+      # route to the project 3 page with this json
+      # id = 1
+      
+      @years = Year.where(plan_id: :id)
+      
+          
   end
 
   # GET /plans/new
