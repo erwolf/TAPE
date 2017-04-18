@@ -57,13 +57,13 @@ var courses = [new course(SemEnum.FALL, 2014, "EGCP", 1010, "Digital Logic Desig
 				new course(SemEnum.SPRING, 2018, "PYCH" , 1600, "General Psychology", 3),
 				new course(SemEnum.SPRING, 2018, "PFMU" , 3820, "Men's Glee Club", 1)];
 */
-/*
+
 jQuery.extend({
-	getData_Plan: function() {
+	getData: function() {
 		var result = null;
 		$.ajax({
 			type: 'GET',
-			url: 'http://judah.cedarville.edu/~gallaghd/cs3220/termProject/getProj3Data.php?getPlan=1',
+			url: window.location.href + '.json',
 			dataType: 'json',
 			async: false,
 			success: function(data) {
@@ -73,7 +73,7 @@ jQuery.extend({
 		return result;
 	}
 });
-
+/*
 jQuery.extend({
 	getData_Courses: function() {
 		var result = null;
@@ -85,7 +85,7 @@ jQuery.extend({
 			success: function(data) {
 				result = data;
 				var formattedCourses = formatCourses_forFinder(data);
-				
+
 				populateFinder(formattedCourses);
 			}
 		});
@@ -95,7 +95,7 @@ jQuery.extend({
 */
 
 function printData(data){
-	console.log(data);	
+	console.log(data);
 }
 
 function formatCourses(data){
@@ -130,20 +130,20 @@ function formatCourses(data){
 
 function formatCourses_forFinder(data){
 	var courses = [];
-	
+
 	for(var c in data){
-		
+
 		var tempCourse = data[c];
-		
+
 		var code = tempCourse.number;
 		var name = tempCourse.name;
 		var desc = tempCourse.description;
 		var cred = tempCourse.credits;
-		
+
 		var newCourse = new finderCourse(code, name, desc, cred);
 		courses.push(newCourse);
-	}	
-	
+	}
+
 	return courses;
 }
 

@@ -1,24 +1,15 @@
 $(document).ready(function() {
 
 
-	//$.getData_Courses();
-
-	//var plan_data = $.getData_Plan();
-	//var formattedPlanCourses = formatCourses(plan_data.courses);
-	//var myPlan = buildPlan(plan_data.name, plan_data.catalogYear, plan_data.major, plan_data.student, formattedPlanCourses, plan_data.currTerm, plan_data.currYear);
-
-
-	//displayPlan(myPlan, true);
-
 
 	$("#accordion").accordion({
 		heightStyle: "fill",
 		collapsible: true
 	});
 	$("#classFinder").css("height", "calc(100% - 40px)");
-	$("#tablePane").slimScroll({height : 'calc(100% - 8px)'});
+	//$("#tablePane").slimScroll({height : 'calc(100% - 8px)'});
 	$("#tablePane").css("width","100%");
-	$("#finderTable").tablesorter();
+	//$("#finderTable").tablesorter();
 
 	// add functionality to the scrollers (both clicks, and hovers)
 	$("#rightScroller").click(function() {
@@ -176,4 +167,15 @@ $(document).ready(function() {
 		}
 	  }
 	}
+
+
+
+    //	$.getData_Courses();
+
+	var data = $.getData();
+    var plan_data = data['plan'];
+    var course_data = data['courses'];
+
+	displayPlan(plan_data, true);
+    populateFinder(course_data);
 });
