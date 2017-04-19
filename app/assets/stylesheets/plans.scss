@@ -2,4 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-header { background-color: #b0c4de;}
+header { 
+  height: 100%;
+    width: 100%;
+    background: #2C3E50;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
