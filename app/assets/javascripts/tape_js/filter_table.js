@@ -38,12 +38,12 @@ function alternateFilter(){
 	if(tr[i].style.display != "none"){
 		count++;		
 		if(count % 2 == 0){
-			tr[i].setAttribute("class","even");
+			tr[i].className = "catalog-course even";
 		} else{				
-			tr[i].setAttribute("class","odd");
+			tr[i].className = "catalog-course odd";
 		}
 	} else{
-		tr[i].setAttribute("class", "");
+		tr[i].className = "catalog-course";
 	}
   }
 }
@@ -55,6 +55,7 @@ function populateFinder(courses){
 	for(var i=0; i<courses.length; i++){
 		var tr = document.createElement("tr");
 		tr.setAttribute("title", courses[i].description);
+		tr.setAttribute("class", "catalog-course");
 				
 		var td1 = document.createElement("td");
 		td1.setAttribute("class", "name");
@@ -78,4 +79,28 @@ function populateFinder(courses){
 		finderTable.appendChild(tr);
 	}
 	alternateFilter();
+	
+	
+	makeTableCoursesDraggable();
+}
+
+function makeTableCoursesDraggable(){
+	
+	$('.catalog-course').draggable({		
+		revert: true,
+		helper: function() {
+				
+			var a = $(this);
+			var code = a[0].children[0].innerHTML;
+			var b = buildCourse(code.substring(0,code.length-5), code.substring(code.length-4), a[0].children[1].innerHTML, a[0].children[2].innerHTML);
+			b.style.zIndex = 1000;
+			b.style.width = '100px';
+			b.style.height = '100px';
+			return b;
+		},
+		scroll: false,
+		containment: 'window',
+		appendTo: 'body'
+	});
+	
 }

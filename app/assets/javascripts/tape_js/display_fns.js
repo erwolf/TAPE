@@ -81,17 +81,20 @@ function displayPlan(myPlan, summerShow){
 
 			var currSem = plan.currSemester;
 			var currYear = plan.currYear;
-
+			var overlayOn = false;
 			if(currYear > semYear || (currYear == semYear && currSem > semTerm)){
 				var overlay = document.createElement("div");
 				overlay.setAttribute("class", "overlay");
 				semester.appendChild(overlay);
+				overlayOn = true;
+			} else{
+				semester.className += " active";
 			}
 
 			// create semester content
 			var content = document.createElement("div");
 			content.setAttribute("class", "semesterContent");
-
+			
 			semester.appendChild(content);
 
 			// loop over every course in the semester
@@ -99,34 +102,8 @@ function displayPlan(myPlan, summerShow){
 			var sumCredits = 0;
 			for(var k=0; k<courses.length; k++){
 
-				// create the course
-				var course = document.createElement("div");
-
-				var dept = getDeptClass(courses[k].codeDept);
-				course.setAttribute("class", "course " + dept);
-
-				course.style.flexGrow = courses[k].credits;
-
-				// create the course title
-				var title = document.createElement("div");
-				title.setAttribute("class", "courseTitle");
-				title.innerHTML = courses[k].name;
-
-				// create the credit field
-				var credits = document.createElement("div");
-				credits.setAttribute("class", "courseCredits");
-				credits.innerHTML = courses[k].credits;
+				var course = buildCourse(courses[k].codeDept, courses[k].codeNum, courses[k].name, courses[k].credits);
 				sumCredits += courses[k].credits;
-
-				// create the code field
-				var code = document.createElement("div");
-				code.setAttribute("class", "courseCode");
-				code.innerHTML = courses[k].codeDept + "-" + courses[k].codeNum;
-
-				course.appendChild(title);
-				course.appendChild(credits);
-				course.appendChild(code);
-
 				// add the course to the semester
 				content.appendChild(course);
 			}
@@ -139,7 +116,67 @@ function displayPlan(myPlan, summerShow){
 		}
 	}
 
-	$(".course").draggable({snap: ".semesterContent", snapMode: "inner", revert: true});
+	makeCoursesDraggable();
+	makeSemestersDroppable();
+
+}
+
+function buildCourse(codeDept, codeNum, name, credits){
+	// create the course
+	var course = document.createElement("div");
+
+	var dept = getDeptClass(codeDept);
+	course.setAttribute("class", "course " + dept);
+
+	course.style.flexGrow = credits;
+
+	// create the course title
+	var title = document.createElement("div");
+	title.setAttribute("class", "courseTitle");
+	title.innerHTML = name;
+
+	// create the credit field
+	var creditDiv = document.createElement("div");
+	creditDiv.setAttribute("class", "courseCredits");
+	creditDiv.innerHTML = credits;
+	
+
+	// create the code field
+	var code = document.createElement("div");
+	code.setAttribute("class", "courseCode");
+	code.innerHTML = codeDept + "-" + codeNum;
+
+	course.appendChild(title);
+	course.appendChild(creditDiv);
+	course.appendChild(code);
+	
+	return course;
+}
+
+function makeCoursesDraggable(){
+	
+	$(".course").draggable({
+		revert: true,
+		revertDuration: 0,
+		
+		helper: 'clone'
+	});
+}
+
+function makeSemestersDroppable(){
+		
+	$(".semester.active").droppable({
+		drop: function(event, ui) {
+			var a = $(this).find('.semesterContent')[0];
+			ui.draggable[0].remove();
+			
+			var code = ui.draggable[0].children[0].innerHTML;
+			var b = buildCourse(code.substring(0,code.length-5), code.substring(code.length-4), ui.draggable[0].children[1].innerHTML, ui.draggable[0].children[2].innerHTML);
+			
+			a.append(b);			
+			makeCoursesDraggable();
+		}
+	});
 }
 
 // re-displays the plan anytime the window resizes

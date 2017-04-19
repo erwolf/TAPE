@@ -1,7 +1,5 @@
 $(document).ready(function() {
 
-
-
 	$("#accordion").accordion({
 		heightStyle: "fill",
 		collapsible: true
@@ -53,8 +51,6 @@ $(document).ready(function() {
 		int4 && clearInterval(int4);
 	});
 
-	checkScrollers();
-
 	// handle left-right resizing of the #rightContainer div
 	// creates a ghostbar that indicates where the div will be resized to when released
 	var dragging = false;
@@ -78,30 +74,6 @@ $(document).ready(function() {
 		  }
 	   });
 
-	});
-
-	// resize the divs
-	$(document).mouseup(function(e){
-	   if (dragging)
-	   {
-		   var sideWidth;
-		   if(e.pageX >= window.innerWidth-200){
-			  sideWidth = 200;
-		   }else if(e.pageX < 250){
-			  sideWidth = window.innerWidth-250;
-		   }else{
-			  sideWidth = window.innerWidth - e.pageX;
-		   }
-
-		   $('#rightContainer').css("width",sideWidth + "px");
-
-		   var c = "calc(100% - " + sideWidth + "px)"
-
-		   $('#leftContainer').css("width",c);
-		   $('#ghostbarW').remove();
-		   $(document).unbind('mousemove');
-		   dragging = false;
-	   }
 	});
 
 	// handle up-down resizing of the #finder div
@@ -131,7 +103,27 @@ $(document).ready(function() {
 
 	// resize the divs
 	$(document).mouseup(function(e){
-	   if (dragging2)
+		
+	   if (dragging)
+	   {
+		   var sideWidth;
+		   if(e.pageX >= window.innerWidth-200){
+			  sideWidth = 200;
+		   }else if(e.pageX < 250){
+			  sideWidth = window.innerWidth-250;
+		   }else{
+			  sideWidth = window.innerWidth - e.pageX;
+		   }
+
+		   $('#rightContainer').css("width",sideWidth + "px");
+
+		   var c = "calc(100% - " + sideWidth + "px)"
+
+		   $('#leftContainer').css("width",c);
+		   $('#ghostbarW').remove();
+		   $(document).unbind('mousemove');
+		   dragging = false;
+	   } else if (dragging2)
 	   {
 		   var sideWidth;
 		   if(e.pageY >= window.innerHeight-200){
@@ -168,14 +160,19 @@ $(document).ready(function() {
 	  }
 	}
 
-
-
-    //	$.getData_Courses();
-
 	var data = $.getData();
     var plan_data = data['plan'];
     var course_data = data['courses'];
-
 	displayPlan(plan_data, true);
     populateFinder(course_data);
+	
+
+	checkScrollers();
+	
+	
+	
+	
+	
+	
+	
 });
