@@ -604,7 +604,7 @@ input{
 }
 
 #bodyContainer{
-	height: 91%;
+	height: calc(100% - 60px);
 	width: 100%;
 	margin: 0;
 	background: none;
@@ -612,7 +612,7 @@ input{
 }
 
 #headerContainer{
-	height: 9%;
+	height: 60px;
 	width: 100%;
 	margin: 0;
 	background: orange;	

@@ -23,6 +23,19 @@
             formattedSemester[:term] = semester['term']
             formattedSemester[:year] = year['year']
             formattedSemester[:courses] = []
+            
+            termName = 'SU '
+            formattedSemester[:name] = termName + (year['year']+1).to_s
+
+            case semester['term']
+            when 0
+                termName = 'FA '
+                formattedSemester[:name] = termName + year['year'].to_s
+            when 1
+                termName = 'SP '
+                formattedSemester[:name] = termName + (year['year']+1).to_s
+            end
+
 
             sem_courses = SemesterCourse.where(semester_id: semester['id'])
             sem_courses.each { |sem_course|
@@ -41,11 +54,10 @@
         }
         formattedYear[:terms].push(formattedSemester)
     }
-    formattedPlan[:years].push(formattedYear)
+    formattedPlan[:years][formattedYear[:name]] = formattedYear
 }
 
-
-formattedCourses = []
+formattedCourses = Course.all 
 
 json.plan formattedPlan
 json.courses formattedCourses

@@ -3,12 +3,6 @@
 	Project #6
 	February 14th, 2017 -->
 
-<% if current_page?(root_path) %>
-    <%= render 'layouts/header' %>
-<% else %>
-    <%= render 'layouts/TAPE_header' %>
-<% end %>
-	
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -32,6 +26,8 @@
 
 	<body onresize="resizeWindow()">
 	<div class="wrapper">
+         <%= render 'layouts/TAPE_header' %>
+	
 		<div id="bodyContainer">
 			<div id="leftContainer">
 				<div id="leftScroller"> &#9664 </div>
