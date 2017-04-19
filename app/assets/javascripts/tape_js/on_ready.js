@@ -7,9 +7,9 @@ $(document).ready(function() {
 		collapsible: true
 	});
 	$("#classFinder").css("height", "calc(100% - 40px)");
-	//$("#tablePane").slimScroll({height : 'calc(100% - 8px)'});
+	$("#tablePane").slimScroll({height : 'calc(100% - 8px)'});
 	$("#tablePane").css("width","100%");
-	//$("#finderTable").tablesorter();
+	$("#finderTable").tablesorter();
 
 	// add functionality to the scrollers (both clicks, and hovers)
 	$("#rightScroller").click(function() {

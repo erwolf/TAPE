@@ -55,14 +55,13 @@ function populateFinder(courses){
 	for(var i=0; i<courses.length; i++){
 		var tr = document.createElement("tr");
 		tr.setAttribute("title", courses[i].description);
-		
-		
+				
 		var td1 = document.createElement("td");
 		td1.setAttribute("class", "name");
 		var td2 = document.createElement("td");
 		var td3 = document.createElement("td");
 		
-		td1.innerHTML = courses[i].code;
+		td1.innerHTML = courses[i].codeDept + '-' + courses[i].codeNum;
 		td2.innerHTML = courses[i].name;
 		td3.innerHTML = courses[i].credits;		
 		

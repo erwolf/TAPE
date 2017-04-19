@@ -5,7 +5,7 @@ class CreateCourses < ActiveRecord::Migration[5.0]
       t.string :codeDept
       t.string :codeNum
       t.integer :credits
-
+      t.string :description
       t.timestamps
     end
   end

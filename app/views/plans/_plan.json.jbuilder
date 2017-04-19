@@ -48,7 +48,7 @@
                 formattedCourse[:credits] = course[0]['credits']
                 formattedCourse[:codeNum] = course[0]['codeNum']
                 formattedCourse[:codeDept] = course[0]['codeDept']
-
+                formattedCourse[:description] = course[0]['description']
 
                 formattedSemester[:courses].push(formattedCourse)
         }

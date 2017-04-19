@@ -17,8 +17,9 @@ ActiveRecord::Schema.define(version: 20170418010777) do
     t.string   "codeDept"
     t.string   "codeNum"
     t.integer  "credits"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "plans", force: :cascade do |t|
