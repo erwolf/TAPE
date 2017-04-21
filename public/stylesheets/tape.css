@@ -46,6 +46,10 @@ a{
 	text-decoration: none;
 }
 
+a:hover{
+    background: none;
+}
+
 li{
 	list-style: none;
     height: 25px;
