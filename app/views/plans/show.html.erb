@@ -93,17 +93,13 @@
 <%= javascript_include_tag('tape_js/jquery-ui-slimscroll.js')%>
 <%= javascript_include_tag('tape_js/jquery-ui-tablesorter.js')%>
 
-<%= javascript_include_tag('tape_js/display_fns.js')%>
+<%= javascript_include_tag('tape_js/planner_definitions.js')%>
+<%= javascript_include_tag('tape_js/get_json.js')%>
 <%= javascript_include_tag('tape_js/dropdown_fns.js')%>
 <%= javascript_include_tag('tape_js/filter_table.js')%>
-<%= javascript_include_tag('tape_js/get_json.js')%>
-<%= javascript_include_tag('tape_js/planner_definitions.js')%>
 <%= javascript_include_tag('tape_js/scroller_fns.js')%>
+<%= javascript_include_tag('tape_js/display_fns.js')%>
 <%= javascript_include_tag('tape_js/on_ready.js')%>
-
-<script> printData(<%= @plan.to_json.to_s.html_safe %>)</script>
-<script> printData(<%= @formattedPlan.to_json.to_s.html_safe %>)</script>
-
 	</body>
 </html>
 

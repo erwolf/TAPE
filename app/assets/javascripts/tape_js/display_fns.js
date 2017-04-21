@@ -216,3 +216,5 @@ function deleteYear(){
 		alert("Cannot delete year. Final year is not empty!");
 	}
 }
+
+
