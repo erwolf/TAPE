@@ -968,6 +968,7 @@ a.ui-button:hover,
 a.ui-button:focus {
 	color: #2b2b2b;
 	text-decoration: none;
+	background-color: none;
 }
 
 .ui-visual-focus {
