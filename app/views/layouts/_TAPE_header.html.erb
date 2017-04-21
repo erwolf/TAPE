@@ -15,6 +15,7 @@
 					<div class="dropdown">
 					  <div onclick="myFunction()" id="options-btn" class="button">OPTIONS <span class="fa fa-caret-down"> </span></div>
 					  <div id="myDropdown" class="dropdown-content">
+						<%= link_to "<div class="button"> <span class="fa fa-fast-backward"></span> Log Out </div>", destroy_user_session_path, :method=>:delete%>
 						<div class="button" onclick="toggleSummer(this)"> <span class="fa fa-arrows-h"></span> Toggle Summer Semesters </div>
 						<div class="button" onclick="addYear()"> <span class="fa fa-plus-circle"></span> Add Year </div>
 						<div class="button" onclick="deleteYear()"> <span class="fa fa-minus-circle"></span> Delete Year </div>
