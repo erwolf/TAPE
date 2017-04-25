@@ -11,6 +11,7 @@ user1.login = "joe"
 user1.email = "joe@cedarville.edu"
 user1.password = "password"
 user1.password_confirmation = "password"
+user1.role = "student"
 user1.save!
 
 user2 = User.new
@@ -18,6 +19,7 @@ user2.login = "pete"
 user2.email = "pete@cedarville.edu"
 user2.password = "password"
 user2.password_confirmation = "password"
+user2.role = "admin"
 user2.save!
 
 Plan.create(user_id:user1.id, name:"myPlan", currYear:2017, currSemester:1, majorName:"Computer Science", catalogYear:2014) #1
