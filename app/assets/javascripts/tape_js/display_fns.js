@@ -20,11 +20,8 @@ function displayPlan2(summerShow){
 }
 
 function displayPlan(myPlan, summerShow){
-
+  var totalCreds = 0;
 	plan = myPlan;
-
-	var planHeading = document.getElementById("planHeading");
-	planHeading.innerHTML = "ACADEMIC PLAN: " + plan.name;
 
 
 	var planner = document.getElementById("planner");
@@ -108,6 +105,8 @@ function displayPlan(myPlan, summerShow){
 				content.appendChild(course);
 			}
 
+      totalCreds += sumCredits;
+
 			// create semester footer
 			var footer = document.createElement("div");
 			footer.setAttribute("class", "semesterFooter");
@@ -118,6 +117,9 @@ function displayPlan(myPlan, summerShow){
 
 	makeCoursesDraggable();
 	makeSemestersDroppable();
+
+	var planHeading = document.getElementById("planHeading");
+	planHeading.innerHTML = "ACADEMIC PLAN: " + plan.name + "<br><h5 style='margin:0px'>" + "Major: " + plan.majorName + " - Total Credits: " + totalCreds + "</h5>";
 
 }
 
@@ -165,9 +167,9 @@ function makeCoursesDraggable(){
 			left: 5
 		}
 	});
-	
-	
-	$('.course').mousedown(function(event) {		
+
+
+	$('.course').mousedown(function(event) {
 		switch (event.which) {
 			case 1:
 				break;
@@ -187,9 +189,9 @@ function makeSemestersDroppable(){
 	$(".semester.active").droppable({
 		drop: function(event, ui) {
 			var a = $(this).find('.semesterContent')[0];
-			
+
 			var b;
-			
+
 			if(ui.draggable[0].classList[0] == 'course') {
 				ui.draggable[0].remove();
 				var code = ui.draggable[0].children[2].innerHTML;
