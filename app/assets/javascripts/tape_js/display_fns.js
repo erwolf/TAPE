@@ -47,7 +47,7 @@ function displayPlan(myPlan, summerShow){
 		year.setAttribute("class", "year");
 		year.style.minWidth = yearWidthStr;
 		year.style.maxWidth = yearWidthStr;
-
+		year.id = i;
 		planner.appendChild(year);
 
 		// loop over every semester in the year
@@ -56,6 +56,8 @@ function displayPlan(myPlan, summerShow){
 
 			// create semester
 			var semester = document.createElement("div");
+			semester.id = j;
+			semester.dataset.ruby_id = sems[j].id;
 			if(j != 2){
 				semester.setAttribute("class", "semester spring");
 				if(!summerShow) semester.style.width="46%";
@@ -99,13 +101,13 @@ function displayPlan(myPlan, summerShow){
 			var sumCredits = 0;
 			for(var k=0; k<courses.length; k++){
 
-				var course = buildCourse(courses[k].codeDept, courses[k].codeNum, courses[k].name, courses[k].credits);
+				var course = buildCourse(courses[k].codeDept, courses[k].codeNum, courses[k].name, courses[k].credits, courses[k].id);
 				sumCredits += courses[k].credits;
 				// add the course to the semester
 				content.appendChild(course);
 			}
 
-      totalCreds += sumCredits;
+			totalCreds += sumCredits;
 
 			// create semester footer
 			var footer = document.createElement("div");
@@ -123,7 +125,7 @@ function displayPlan(myPlan, summerShow){
 
 }
 
-function buildCourse(codeDept, codeNum, name, credits){
+function buildCourse(codeDept, codeNum, name, credits, id){
 	// create the course
 	var course = document.createElement("div");
 
@@ -151,6 +153,8 @@ function buildCourse(codeDept, codeNum, name, credits){
 	course.appendChild(title);
 	course.appendChild(creditDiv);
 	course.appendChild(code);
+	
+	course.id = id;
 
 	return course;
 }
@@ -193,18 +197,63 @@ function makeSemestersDroppable(){
 			var b;
 
 			if(ui.draggable[0].classList[0] == 'course') {
+				
+				removeFromPlan(ui.draggable[0]);
 				ui.draggable[0].remove();
+				
 				var code = ui.draggable[0].children[2].innerHTML;
-				b = buildCourse(code.substring(0,code.length-5), code.substring(code.length-4), ui.draggable[0].children[0].innerHTML, ui.draggable[0].children[1].innerHTML);
+				b = buildCourse(code.substring(0,code.length-5), code.substring(code.length-4), ui.draggable[0].children[0].innerHTML, ui.draggable[0].children[1].innerHTML, ui.draggable[0].id);
 				a.append(b);
+				
+				addToPlan(b, code);
+				
 			}else if(ui.draggable[0].classList[0] == 'catalog-course'){
 				var code = ui.draggable[0].children[0].innerHTML;
-				b = buildCourse(code.substring(0,code.length-5), code.substring(code.length-4), ui.draggable[0].children[1].innerHTML, ui.draggable[0].children[2].innerHTML);
+				b = buildCourse(code.substring(0,code.length-5), code.substring(code.length-4), ui.draggable[0].children[1].innerHTML, ui.draggable[0].children[2].innerHTML, ui.draggable[0].id);
 				a.append(b);
+				
+				addToPlan(b, code);
 			}
 			makeCoursesDraggable();
 		}
 	});
+}
+
+
+function addToPlan(courseG, code){
+	
+	var yearId = courseG.parentNode.parentNode.parentNode.id;
+	var semId = courseG.parentNode.parentNode.id;	
+	var newCourse = {};
+	
+	newCourse.semester_ruby = courseG.parentNode.parentNode.dataset.ruby_id;
+	newCourse.name = courseG.children[0].innerHTML;
+	newCourse.credits = courseG.children[1].innerHTML;
+	newCourse.codeDept = code.substring(0,code.length-5);
+	newCourse.codeNum = code.substring(code.length-4);
+	newCourse.id = courseG.id;
+	
+	
+	plan.years[yearId].terms[semId].courses.push(newCourse);
+}
+
+function removeFromPlan(courseG){
+	var yearId = courseG.parentNode.parentNode.parentNode.id;
+	var semId = courseG.parentNode.parentNode.id;	
+	
+	var arrCourses = [];
+	var courses = plan.years[yearId].terms[semId].courses;
+	var broken = false;
+	
+	for(var i=0; i<courses.length; i++){
+		if(!broken && courses[i].id == courseG.id){
+			broken = true;
+		} else{
+			arrCourses.push(courses[i]);
+		}
+	}
+	
+	plan.years[yearId].terms[semId].courses = arrCourses;
 }
 
 // re-displays the plan anytime the window resizes

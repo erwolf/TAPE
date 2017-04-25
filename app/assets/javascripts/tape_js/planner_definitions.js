@@ -61,36 +61,6 @@ function checkEmpty(year){
 	return true;
 }
 
-function buildPlan(name, catalogYear, major, student, courses, currSem, currYear){
-
-	var totSem = getSemFromString(currSem);
-	var totYear = currYear;
-
-    years = [];
-
-    for(var i=0; i<courses.length; i++){
-        var currSem = courses[i].semester;
-        var currYear = courses[i].year;
-        
-        if(currSem != SemEnum.FALL) currYear--;
-
-        if(years[currYear] == null){
-
-            var newFA = new semester("FA " + currYear, [], SemEnum.FALL, currYear);
-            var newSP = new semester("SP " + (currYear+1), [], SemEnum.SPRING, currYear+1);
-            var newSU = new semester("SU " + (currYear+1), [], SemEnum.SUMMER, currYear+1);
-
-            var newYear = new year("" + currYear + "", [newFA, newSP, newSU]);
-            years[currYear] = newYear;
-        }
-
-        years[currYear].terms[getSemIndex(currSem)].courses.push(courses[i]);
-    }
-    var newPlan = new plan(name, catalogYear, major, student, totSem, totYear, years);
-
-    return newPlan;
-}
-
 function getSemFromString(str){
 	switch(str.toLowerCase()){
 		case "spring":

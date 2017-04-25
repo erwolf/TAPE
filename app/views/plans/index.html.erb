@@ -5,7 +5,8 @@
 		<link href="vendor/jquery-ui/jquery-ui.modal.css" rel="stylesheet" type="text/css"-->
 						
 		<!-- TAPE CSS -->
-		<%= stylesheet_link_tag("jquery-js.css") %>
+    <%= stylesheet_link_tag("jquery-js.css") %>
+    <%= stylesheet_link_tag("plans.css") %>
 	</head>
 	<body>
 	
@@ -33,12 +34,12 @@
 			<% end %>
 			
 			<tr><td><%= link_to(raw("<div class='button'>New Plan</div>"), new_plan_path)%></td></tr>
-      <tr><td><% if current_user.role == "admin" then %> <div class="admin-section"> YOU ARE AN ADMIN </div><%end%> </td></tr>
 		  </tbody>
 		</table>
 
 		<br>
 
+		<% if current_user.role == "admin" then %> <div class="admin-section"> YOU ARE AN ADMIN </div><%end%>
 	</body>
 </html>
 

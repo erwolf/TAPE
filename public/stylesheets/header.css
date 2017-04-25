@@ -91,3 +91,18 @@ h3{
 .button-disabled{
 	background-color: black;
 }
+
+
+
+.admin-section{	
+	width: 100%;	
+	height: 250px;
+	
+	font-size: 30pt;
+	line-height: 250px;
+	
+	text-align: center;
+	
+	background: cornflowerblue;
+	border-radius: 15pt;
+}

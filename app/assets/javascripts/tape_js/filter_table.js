@@ -56,6 +56,7 @@ function populateFinder(courses){
 		var tr = document.createElement("tr");
 		tr.setAttribute("title", courses[i].description);
 		tr.setAttribute("class", "catalog-course");
+		tr.setAttribute("id", courses[i].id);
 				
 		var td1 = document.createElement("td");
 		td1.setAttribute("class", "name");
