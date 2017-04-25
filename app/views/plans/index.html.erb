@@ -33,6 +33,7 @@
 			<% end %>
 			
 			<tr><td><%= link_to(raw("<div class='button'>New Plan</div>"), new_plan_path)%></td></tr>
+			  <tr><td><%= if(current_user.role == "admin") YOU ARE AN ADMIN %> </td></tr>
 		  </tbody>
 		</table>
 
