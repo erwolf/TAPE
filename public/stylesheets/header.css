@@ -1,0 +1,93 @@
+/*  header.css
+	
+	TAPE Website
+	Noah Shinabarger, Timothy Smith, Emily Wolf */
+
+@charset "utf-8";
+
+/* HTML OVERWRITTEN STYLES */
+html{
+	margin: 0;
+	height:100%;
+	
+	font-family: Nirmala UI, Arial, Helvetica, sans-serif;
+	
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+
+body{
+	margin: 33px;	
+	padding: 0;	
+	height: 100%;
+	font-family: Arial, Helvetica;
+    font-size: 12px;
+}
+
+td, th{
+	text-align: center;
+}
+
+head{
+	margin: 0;
+	padding: 0;
+	height: 0%;
+}
+
+div{
+	/* Sets the sizing to include borders */
+	box-sizing: border-box;	
+}
+
+a{
+	text-decoration: none;
+}
+
+a:hover{
+    background: none;
+}
+
+li{
+	list-style: none;
+    height: 25px;
+    text-align: left;
+    line-height: 25px;
+    background: none;
+    border-radius: 4pt;
+}
+
+header {
+	flex-direction: row;
+}
+
+h1, h2{
+	text-align: center;
+	margin: 10px
+}
+
+h3{
+}
+.button{
+	display: inline-block;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	touch-action: manipulation;
+	border: 1pt solid #0C2032;
+	background-color: #617487;
+	color: white;
+	font-size: 14px;	
+	padding: 5px 10px;
+	
+	border-radius: 4px;
+	margin: 5px;
+}
+.button:hover{
+	background-color: #42586E;
+	border-color: #1B3147;
+}
+
+.button-disabled{
+	background-color: black;
+}

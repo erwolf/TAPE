@@ -1,10 +1,11 @@
+<%= stylesheet_link_tag("header.css") %>
 <header>
 	<h1> Welcome to the Academic Planning Tool </h1>
+	<br>
 	<% if user_signed_in?%>
-		<h3> Welcome, <%= current_user.login %></h3>
-		<%= link_to "Sign Out", destroy_user_session_path, :method=>:delete%>
+		<h2> Welcome, <%= current_user.login %></h2>
+		<%= link_to(raw("<div class='button'>Sign Out </div>"), destroy_user_session_path, :method=>:delete)%>
 	<% else %>
-		<%= link_to "Sign In", new_user_session_path, :method=>:get%>
-		<%= link_to "Sign Up", new_user_registration_path, :method=>:get%>
+		<%= link_to(raw("<div class='button'>Sign Up </div>"), new_user_registration_path, :method=>:get)%>
 	<% end %>
 </header>

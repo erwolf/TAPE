@@ -1,32 +1,43 @@
-<%= render 'layouts/header' %>
-<p id="notice"><%= notice %></p>
+<html>
+	<head>
+		<!-- JQUERYUI CSS -->
+		<!--link href="vendor/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css">
+		<link href="vendor/jquery-ui/jquery-ui.modal.css" rel="stylesheet" type="text/css"-->
+						
+		<!-- TAPE CSS -->
+		<%= stylesheet_link_tag("jquery-js.css") %>
+	</head>
+	<body>
+	
+	<%= render 'layouts/header' %>
+	<p id="notice"><%= notice %></p>
 
-<h1>Plans</h1>
+		<h1>Plans</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+		<table>
+		  <thead>
+			<tr>
+			  <th><h1>Name</h1></th>
+			  <th colspan="3"></th>
+			</tr>
+		  </thead>
 
-  <tbody>
-    <% @plans.each do |plan| %>
-      <tr>
-        <td><%= plan.name %></td>
-        <td><%= link_to 'Show', plan %></td>
-        <td><%= link_to 'Edit', edit_plan_path(plan) %></td>
-        <td><%= link_to 'Destroy', plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+		  <tbody>
+			<% @plans.each do |plan| %>
+			  <tr>
+				<td><h2><%= plan.name %></h2></td>
+				<td><%= link_to(raw("<div class='button'>Show</div>"), plan)%></td>
+				<!--td><%= link_to 'Edit', edit_plan_path(plan) %></td-->
+				<td><%= link_to(raw("<div class='button'>Delete</div>"), plan, method: :delete, data: {confirm: 'Are you sure?'})%></td>
+			  </tr>
+			<% end %>
+			
+			<tr><td><%= link_to(raw("<div class='button'>New Plan</div>"), new_plan_path)%></td></tr>
+		  </tbody>
+		</table>
 
-<br>
+		<br>
 
-<%= link_to 'New Plan', new_plan_path %>
-
-<!--div id='draggable' style='width:300px; height:300px; background: blue; border: 1pt solid black'></div-->
-
+	</body>
+</html>
 
