@@ -1,14 +1,14 @@
 $(document).ready(function() {
 
-			
+
 	$(document).on("contextmenu", function() {
 		return false;
 	});
-	
-	
+
+
 	$("#accordion").accordion({
-		heightStyle: "fill",
-		collapsible: true
+		heightStyle: "auto",
+		collapsible: false
 	});
 
 	// add functionality to the scrollers (both clicks, and hovers)
@@ -105,7 +105,7 @@ $(document).ready(function() {
 
 	// resize the divs
 	$(document).mouseup(function(e){
-		
+
 	   if (dragging)
 	   {
 		   var sideWidth;
@@ -161,7 +161,7 @@ $(document).ready(function() {
 		}
 	  }
 	}
-		
+
 	$("#classFinder").css("height", "calc(100% - 40px)");
 	$("#tablePane").slimScroll({height : 'calc(100% - 8px)'});
 	$("#tablePane").css("width","100%");
@@ -171,6 +171,6 @@ $(document).ready(function() {
     var course_data = data['courses'];
 	displayPlan(plan_data, true);
     populateFinder(course_data);
-	
+
 	checkScrollers();
 });

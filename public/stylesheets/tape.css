@@ -14,7 +14,7 @@ html{
 	height:100%;
 	
 	font-family: Nirmala UI, Arial, Helvetica, sans-serif;
-	
+  user-select: none;	
 	overflow-x: hidden;
 	overflow-y: hidden;
 }
@@ -442,7 +442,6 @@ input{
 /* LEFT PANEL STYLES */
 #finderWrapper{
 	width:100%;
-	
 	/* change this to adjust the size of the validator pane (LL) */
 	/* subtract the height of the sectionHeaders */
 	height: calc(27%);
@@ -603,7 +602,7 @@ input{
 	margin: 0;
 	width: 250px;
 	height: 100%;
-	background-color: aqua;
+	background-color: #C3D7DF;
 	float: left;
 }
 
@@ -716,7 +715,6 @@ table.tablesorter thead tr .headerSortDown {
 
 /* ACCORDION STYLES */
 #accordion {
-	height: calc(100% - 40px);
 }
 
 .ui-state-default{

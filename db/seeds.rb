@@ -22,11 +22,18 @@ user2.save!
 
 Plan.create(user_id:user1.id, name:"myPlan", currYear:2017, currSemester:1, majorName:"Computer Science", catalogYear:2014) #1
 Plan.create(user_id:user2.id, name:"Plan 2", currYear:2017, currSemester:1, majorName:"Computer Science", catalogYear:2014) #2
+Plan.create(user_id:user1.id, name:"The Super Duper Cool Plan", currYear:2017, currSemester:1, majorName:"Computer Science", catalogYear:2014) #3
 
 Year.create(year:2016,plan_id:1) #1
 Year.create(year:2017,plan_id:1) #2
 Year.create(year:2018,plan_id:1) #3
 Year.create(year:2019,plan_id:1) #4
+
+Year.create(year:2016,plan_id:3) #5
+Year.create(year:2017,plan_id:3) #6
+Year.create(year:2018,plan_id:3) #7
+Year.create(year:2019,plan_id:3) #8
+
 
 Semester.create(term:0,year_id:1,plan_id:1) #1
 Semester.create(term:1,year_id:1,plan_id:1) #2
@@ -40,6 +47,19 @@ Semester.create(term:2,year_id:3,plan_id:1) #9
 Semester.create(term:0,year_id:4,plan_id:1) #10
 Semester.create(term:1,year_id:4,plan_id:1) #11
 Semester.create(term:2,year_id:4,plan_id:1) #12
+
+Semester.create(term:0,year_id:5,plan_id:3) #13
+Semester.create(term:1,year_id:5,plan_id:3) #14
+Semester.create(term:2,year_id:5,plan_id:3) #15
+Semester.create(term:0,year_id:6,plan_id:3) #16
+Semester.create(term:1,year_id:6,plan_id:3) #17
+Semester.create(term:2,year_id:6,plan_id:3) #18
+Semester.create(term:0,year_id:7,plan_id:3) #19
+Semester.create(term:1,year_id:7,plan_id:3) #20
+Semester.create(term:2,year_id:7,plan_id:3) #21
+Semester.create(term:0,year_id:8,plan_id:3) #22
+Semester.create(term:1,year_id:8,plan_id:3) #23
+Semester.create(term:2,year_id:8,plan_id:3) #24
 
 Course.create(codeDept:"CS",codeNum:"1210",name:"C++ Programming",description:"This course is SO easy!",credits:2) #1
 Course.create(codeDept:"CS",codeNum:"1220",name:"Object-Oriented Design",description:"What's an object? What's the object of this course",credits:3) #2
@@ -87,3 +107,27 @@ SemesterCourse.create(semester_id:10,course_id:10)
 SemesterCourse.create(semester_id:10,course_id:11)
 SemesterCourse.create(semester_id:11,course_id:20)
 SemesterCourse.create(semester_id:11,course_id:7)
+
+SemesterCourse.create(semester_id:13,course_id:1)
+SemesterCourse.create(semester_id:13,course_id:12)
+SemesterCourse.create(semester_id:14,course_id:5)
+SemesterCourse.create(semester_id:14,course_id:2)
+SemesterCourse.create(semester_id:14,course_id:14)
+SemesterCourse.create(semester_id:14,course_id:15)
+
+SemesterCourse.create(semester_id:16,course_id:3)
+SemesterCourse.create(semester_id:16,course_id:16)
+SemesterCourse.create(semester_id:17,course_id:4)
+SemesterCourse.create(semester_id:17,course_id:17)
+SemesterCourse.create(semester_id:17,course_id:18)
+SemesterCourse.create(semester_id:17,course_id:13)
+
+SemesterCourse.create(semester_id:19,course_id:6)
+SemesterCourse.create(semester_id:19,course_id:19)
+SemesterCourse.create(semester_id:20,course_id:8)
+SemesterCourse.create(semester_id:20,course_id:21)
+
+SemesterCourse.create(semester_id:22,course_id:10)
+SemesterCourse.create(semester_id:22,course_id:11)
+SemesterCourse.create(semester_id:23,course_id:20)
+SemesterCourse.create(semester_id:23,course_id:7)
