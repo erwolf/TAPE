@@ -102,7 +102,7 @@ input{
 	width: auto;
 	
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 20;
+    z-index: 51;
 }
 .show {
 	display:flex;
@@ -666,16 +666,16 @@ input{
 /* FINDER STYLES */
 
 table.tablesorter thead tr .header {
-	background-image: url(img/bg.gif);
+	background-image: url(../images/bg.gif);
 	background-repeat: no-repeat;
 	background-position: center right;
 	cursor: pointer;
 }
 table.tablesorter thead tr .headerSortUp {
-	background-image: url(img/asc.gif);
+	background-image: url(../images/asc.gif);
 }
 table.tablesorter thead tr .headerSortDown {
-	background-image: url(img/desc.gif);
+	background-image: url(../images/desc.gif);
 }
 
 #finderTable tr.even{

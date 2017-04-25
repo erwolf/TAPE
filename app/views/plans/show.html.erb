@@ -3,16 +3,8 @@
 	Project #6
 	February 14th, 2017 -->
 
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="description" content="ENTAPE (Emily, Noah, Timmy Academic Planning Environment">
-		<meta name="author" content="Noah Shinabarger, Timothy Smith, and Emily Wolf">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-		<title>NEWTAPE</title>
-
+	<body onresize="resizeWindow()">
+		
 		<!-- JQUERYUI CSS -->
 		<!--link href="vendor/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css">
 		<link href="vendor/jquery-ui/jquery-ui.modal.css" rel="stylesheet" type="text/css"-->
@@ -20,13 +12,13 @@
 		<!-- TAPE CSS -->
 		<%= stylesheet_link_tag("jquery-js.css") %>
 		<%= stylesheet_link_tag("tape.css") %>
+		
+	<div class="wrapper">
+		
 
 		<!-- Custom Fonts -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	</head>
-
-	<body onresize="resizeWindow()">
-	<div class="wrapper">
+	
          <%= render 'layouts/TAPE_header' %>
 	
 		<div id="bodyContainer">
@@ -86,10 +78,6 @@
 			</div>
 		</div>
     </div>
-
-
-<%= link_to 'Back', plans_path %>
-
 
 <%= javascript_include_tag('tape_js/jquery-ui-slimscroll.js')%>
 <%= javascript_include_tag('tape_js/jquery-ui-tablesorter.js')%>

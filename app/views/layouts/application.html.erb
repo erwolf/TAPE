@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TAPE</title>
+    <meta charset="utf-8">
+	<meta name="description" content="ENTAPE (Emily, Noah, Timmy Academic Planning Environment">
+	<meta name="author" content="Noah Shinabarger, Timothy Smith, and Emily Wolf">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>NEWTAPE</title>
+	
+	<%= favicon_link_tag 'favicon.png' %>
+	
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,7 +17,6 @@
   </head>
 
   <body>
-   <!--<%= render 'layouts/header' %>-->
     <%= yield %>
   </body>
 </html>

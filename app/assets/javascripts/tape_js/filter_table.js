@@ -88,6 +88,7 @@ function makeTableCoursesDraggable(){
 	
 	$('.catalog-course').draggable({		
 		revert: true,
+		revertDuration: 0,
 		helper: function() {
 				
 			var a = $(this);
@@ -96,11 +97,16 @@ function makeTableCoursesDraggable(){
 			b.style.zIndex = 1000;
 			b.style.width = '100px';
 			b.style.height = '100px';
+			b.style.textAlign = 'center';
 			return b;
 		},
 		scroll: false,
 		containment: 'window',
-		appendTo: 'body'
+		appendTo: 'body',
+		cursorAt: {
+			top: 5,
+			left: 5
+		}
 	});
-	
+
 }

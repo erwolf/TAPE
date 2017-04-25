@@ -94,7 +94,7 @@ function displayPlan(myPlan, summerShow){
 			// create semester content
 			var content = document.createElement("div");
 			content.setAttribute("class", "semesterContent");
-			
+
 			semester.appendChild(content);
 
 			// loop over every course in the semester
@@ -139,7 +139,7 @@ function buildCourse(codeDept, codeNum, name, credits){
 	var creditDiv = document.createElement("div");
 	creditDiv.setAttribute("class", "courseCredits");
 	creditDiv.innerHTML = credits;
-	
+
 
 	// create the code field
 	var code = document.createElement("div");
@@ -149,31 +149,57 @@ function buildCourse(codeDept, codeNum, name, credits){
 	course.appendChild(title);
 	course.appendChild(creditDiv);
 	course.appendChild(code);
-	
+
 	return course;
 }
 
 function makeCoursesDraggable(){
-	
+
 	$(".course").draggable({
 		revert: true,
 		revertDuration: 0,
-		
-		helper: 'clone'
+
+		helper: 'clone',
+		cursorAt: {
+			top: 5,
+			left: 5
+		}
+	});
+	
+	
+	$('.course').mousedown(function(event) {		
+		switch (event.which) {
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				$(this).remove();
+				break;
+			default:
+				break;
+		}
 	});
 }
 
 function makeSemestersDroppable(){
-		
+
 	$(".semester.active").droppable({
 		drop: function(event, ui) {
 			var a = $(this).find('.semesterContent')[0];
-			ui.draggable[0].remove();
 			
-			var code = ui.draggable[0].children[0].innerHTML;
-			var b = buildCourse(code.substring(0,code.length-5), code.substring(code.length-4), ui.draggable[0].children[1].innerHTML, ui.draggable[0].children[2].innerHTML);
+			var b;
 			
-			a.append(b);			
+			if(ui.draggable[0].classList[0] == 'course') {
+				ui.draggable[0].remove();
+				var code = ui.draggable[0].children[2].innerHTML;
+				b = buildCourse(code.substring(0,code.length-5), code.substring(code.length-4), ui.draggable[0].children[0].innerHTML, ui.draggable[0].children[1].innerHTML);
+				a.append(b);
+			}else if(ui.draggable[0].classList[0] == 'catalog-course'){
+				var code = ui.draggable[0].children[0].innerHTML;
+				b = buildCourse(code.substring(0,code.length-5), code.substring(code.length-4), ui.draggable[0].children[1].innerHTML, ui.draggable[0].children[2].innerHTML);
+				a.append(b);
+			}
 			makeCoursesDraggable();
 		}
 	});
