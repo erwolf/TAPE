@@ -49,6 +49,7 @@ years.each { |year|
 			formattedCourse[:codeDept] = course[0]['codeDept']
 			formattedCourse[:description] = course[0]['description']
 			formattedCourse[:id] = course[0]['id']
+			formattedCourse[:semester_course_ruby] = sem_course['id']
 
 			formattedSemester[:courses].push(formattedCourse)
 		}

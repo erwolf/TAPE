@@ -28,7 +28,65 @@ class PlansController < ApplicationController
   # GET /plans/1/edit
   def edit
   end
+  
+  # POST /plans/1/remove
+  def remove
+	@id = params[:sem_course_id]
 
+	if @id == nil then
+		respond_to do |format|
+			format.html {head :forbidden}
+		end 
+	else
+	
+		semestercourse = SemesterCourse.find(@id)
+
+		if semestercourse == nil then
+			respond_to do |format|
+				format.html {head :forbidden}
+			end 
+		else
+		
+			semestercourse.destroy;
+		
+			respond_to do |format|
+				format.html {head :ok}
+			end 
+		end
+	end	 
+  end
+  
+  # POST /plans/1/add
+  def add
+	@sem_id = params[:sem_id]
+	@course_id = params[:course_id]
+
+	if @sem_id == nil or @course_id == nil then
+		respond_to do |format|
+			format.html {head :forbidden}
+		end 
+	else
+	
+		course = Course.where(:id=>@course_id)
+		semester = Semester.where(:id=>@sem_id)
+
+		if course.length != 1 or semester.length != 1 then
+			respond_to do |format|
+				format.html {head :forbidden}
+			end 
+		else
+		
+			c = SemesterCourse.create(semester_id:@sem_id,course_id:@course_id)
+			
+			respond_to do |format|
+				format.html {render :json =>c['id']}
+			end 
+		end
+	end	 
+  end
+    
+  
+  
   # POST /plans
   # POST /plans.json
   def create

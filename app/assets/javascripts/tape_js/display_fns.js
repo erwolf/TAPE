@@ -57,7 +57,7 @@ function displayPlan(myPlan, summerShow){
 			// create semester
 			var semester = document.createElement("div");
 			semester.id = j;
-			semester.dataset.ruby_id = sems[j].id;
+			semester.dataset.ruby_id = parseInt(sems[j].id);
 			if(j != 2){
 				semester.setAttribute("class", "semester spring");
 				if(!summerShow) semester.style.width="46%";
@@ -101,7 +101,7 @@ function displayPlan(myPlan, summerShow){
 			var sumCredits = 0;
 			for(var k=0; k<courses.length; k++){
 
-				var course = buildCourse(courses[k].codeDept, courses[k].codeNum, courses[k].name, courses[k].credits, courses[k].id);
+				var course = buildCourse(courses[k].codeDept, courses[k].codeNum, courses[k].name, courses[k].credits, courses[k].id, courses[k].semester_course_ruby);
 				sumCredits += courses[k].credits;
 				// add the course to the semester
 				content.appendChild(course);
@@ -125,13 +125,13 @@ function displayPlan(myPlan, summerShow){
 
 }
 
-function buildCourse(codeDept, codeNum, name, credits, id){
+function buildCourse(codeDept, codeNum, name, credits, id, semcourse){
 	// create the course
 	var course = document.createElement("div");
 
 	var dept = getDeptClass(codeDept);
 	course.setAttribute("class", "course " + dept);
-
+	course.dataset.semester_course_ruby = semcourse;
 	course.style.flexGrow = credits;
 
 	// create the course title
@@ -180,7 +180,10 @@ function makeCoursesDraggable(){
 			case 2:
 				break;
 			case 3:
-				$(this).remove();
+				if(removeFromPlan($(this)[0])){
+					$(this).remove();	
+					displayPlan2(displaySummer);
+				}
 				break;
 			default:
 				break;
@@ -198,23 +201,33 @@ function makeSemestersDroppable(){
 
 			if(ui.draggable[0].classList[0] == 'course') {
 				
-				removeFromPlan(ui.draggable[0]);
-				ui.draggable[0].remove();
+				if(removeFromPlan(ui.draggable[0])){
+					ui.draggable[0].remove();
+				} else{
+					return;
+				}
 				
 				var code = ui.draggable[0].children[2].innerHTML;
-				b = buildCourse(code.substring(0,code.length-5), code.substring(code.length-4), ui.draggable[0].children[0].innerHTML, ui.draggable[0].children[1].innerHTML, ui.draggable[0].id);
-				a.append(b);
 				
-				addToPlan(b, code);
+				b = buildCourse(code.substring(0,code.length-5), code.substring(code.length-4), ui.draggable[0].children[0].innerHTML, ui.draggable[0].children[1].innerHTML, ui.draggable[0].id, ui.draggable[0].dataset.semester_course_ruby);
+				a.append(b);
+												
+				if(!addToPlan(b, code)){
+					b.remove();
+					return;
+				}
 				
 			}else if(ui.draggable[0].classList[0] == 'catalog-course'){
 				var code = ui.draggable[0].children[0].innerHTML;
-				b = buildCourse(code.substring(0,code.length-5), code.substring(code.length-4), ui.draggable[0].children[1].innerHTML, ui.draggable[0].children[2].innerHTML, ui.draggable[0].id);
+				b = buildCourse(code.substring(0,code.length-5), code.substring(code.length-4), ui.draggable[0].children[1].innerHTML, ui.draggable[0].children[2].innerHTML, ui.draggable[0].id, ui.draggable[0].dataset.semester_course_ruby);
 				a.append(b);
 				
-				addToPlan(b, code);
+				if(!addToPlan(b, code)){
+					b.remove();
+					return;
+				}
 			}
-			makeCoursesDraggable();
+			displayPlan2(displaySummer);
 		}
 	});
 }
@@ -226,24 +239,43 @@ function addToPlan(courseG, code){
 	var semId = courseG.parentNode.parentNode.id;	
 	var newCourse = {};
 	
-	newCourse.semester_ruby = courseG.parentNode.parentNode.dataset.ruby_id;
+	newCourse.semester_ruby = parseInt(courseG.parentNode.parentNode.dataset.ruby_id);
 	newCourse.name = courseG.children[0].innerHTML;
-	newCourse.credits = courseG.children[1].innerHTML;
+	newCourse.credits = parseInt(courseG.children[1].innerHTML);
 	newCourse.codeDept = code.substring(0,code.length-5);
 	newCourse.codeNum = code.substring(code.length-4);
-	newCourse.id = courseG.id;
+	newCourse.id = parseInt(courseG.id);
 	
+	var oops = true;
 	
-	plan.years[yearId].terms[semId].courses.push(newCourse);
+	$.ajax({
+		type: "POST",
+		url: window.location.href + "/add/?sem_id=" + newCourse.semester_ruby + "&course_id=" + newCourse.id,
+		success: function(data) {			
+			courseG.dataset.semester_course_ruby = parseInt(data);
+			newCourse.semester_course_ruby = parseInt(data);
+			plan.years[yearId].terms[semId].courses.push(newCourse);
+			oops = true;
+		},
+		fail: function() {
+			oops = false;
+		},
+		async: false		
+	});
+	
+	return oops;
 }
 
 function removeFromPlan(courseG){
-	var yearId = courseG.parentNode.parentNode.parentNode.id;
-	var semId = courseG.parentNode.parentNode.id;	
+	var yearId = parseInt(courseG.parentNode.parentNode.parentNode.id);
+	var ruby_sem_id = parseInt(courseG.parentNode.parentNode.dataset.ruby_id);
+	var semId = parseInt(courseG.parentNode.parentNode.id);	
 	
 	var arrCourses = [];
 	var courses = plan.years[yearId].terms[semId].courses;
 	var broken = false;
+	
+	var oops = true;
 	
 	for(var i=0; i<courses.length; i++){
 		if(!broken && courses[i].id == courseG.id){
@@ -253,7 +285,20 @@ function removeFromPlan(courseG){
 		}
 	}
 	
-	plan.years[yearId].terms[semId].courses = arrCourses;
+	$.ajax({
+		type: "POST",
+		url: window.location.href + "/remove/?sem_course_id=" + courseG.dataset.semester_course_ruby,
+		success: function() {
+			plan.years[yearId].terms[semId].courses = arrCourses;
+			oops = true;
+		},
+		fail: function() {
+			oops = false;
+		},
+		async: false		
+	});
+	
+	return oops;
 }
 
 // re-displays the plan anytime the window resizes
