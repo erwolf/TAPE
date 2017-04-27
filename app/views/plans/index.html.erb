@@ -25,7 +25,7 @@
 
 		  <tbody>
 			<% @plans.each do |plan| %>
-			 <%= userName = user.find(plan.user_id) %>
+			 <%= userName = User.find(plan.user_id) %>
 			  <tr>
 				  <% if current_user.role == "faculty" then %> <td><%= userName %></td><%end%>
 				<td><h2><%= plan.name %></h2></td>
