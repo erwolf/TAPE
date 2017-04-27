@@ -17,6 +17,7 @@ html{
 form {
 	margin: 0 auto;	
 	width: 175px;
+	background-color: lightgrey;
 }
 
 body{
@@ -78,6 +79,7 @@ li{
 header {
 	flex-direction: row;
 	height: 60px;
+	margin: 0;
 }
 
 h1, h2{
