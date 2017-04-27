@@ -45,8 +45,6 @@ td, th{
 td h2{
 	text-align: left;
 	vertical-align: middle;
-	margin: 0;
-	margin-top: 50%;
 }
 
 tr:nth-child(even) {background-color: #cce0ff}
@@ -85,7 +83,8 @@ header {
 
 h1, h2{
 	text-align: center;
-	margin: 10px
+	margin: 10px;
+	margin-top: 50%;
 }
 
 button{
