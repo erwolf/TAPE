@@ -140,44 +140,49 @@ class PlansController < ApplicationController
   # POST /plans.json
   def create
   
-	puts "I AM HERE, LOVE ME 1"
-  
-    @plan = Plan.new(plan_params)
+    @plan = Plan.new(plan_params)	
     @plan.user_id = current_user.id
 	
-	puts "I AM HERE, LOVE ME 2"
-	
-	currYear = Time.now.year
-	
-	puts "I AM HERE, LOVE ME 3"
-	puts currYear
-
-	year1 = Year.new(year:currYear,plan_id:@plan.id)
-	year2 = Year.new(year:currYear+1,plan_id:@plan.id)
-	year3 = Year.new(year:currYear+2,plan_id:@plan.id)
-	year4 = Year.new(year:currYear+3,plan_id:@plan.id)
-	
-	puts "I AM HERE, LOVE ME 4"
-	puts @plan.id
-
-	Semester.new(term:0,year_id:year1.id,plan_id:@plan.id)
-	Semester.new(term:1,year_id:year1.id,plan_id:@plan.id)
-	Semester.new(term:2,year_id:year1.id,plan_id:@plan.id)
-	Semester.new(term:0,year_id:year2.id,plan_id:@plan.id)
-	Semester.new(term:1,year_id:year2.id,plan_id:@plan.id)
-	Semester.new(term:2,year_id:year2.id,plan_id:@plan.id)
-	Semester.new(term:0,year_id:year3.id,plan_id:@plan.id)
-	Semester.new(term:1,year_id:year3.id,plan_id:@plan.id)
-	Semester.new(term:2,year_id:year3.id,plan_id:@plan.id)
-	Semester.new(term:0,year_id:year4.id,plan_id:@plan.id)
-	Semester.new(term:1,year_id:year4.id,plan_id:@plan.id)
-	Semester.new(term:2,year_id:year4.id,plan_id:@plan.id)
-	
-	puts "I AM HERE, LOVE ME 5"
-	puts year4.id
 	
 	respond_to do |format|
-      if @plan.save
+      if @plan.save 
+		
+		currYear = Time.now.year
+
+		year1 = Year.new(year:currYear,plan_id:@plan.id)
+		year2 = Year.new(year:currYear+1,plan_id:@plan.id)
+		year3 = Year.new(year:currYear+2,plan_id:@plan.id)
+		year4 = Year.new(year:currYear+3,plan_id:@plan.id)
+
+		
+		if year1.save and year2.save and year3.save and year4.save then		
+			s1 = Semester.new(term:0,year_id:year1.id,plan_id:@plan.id)
+			s1.save
+			s1 = Semester.new(term:1,year_id:year1.id,plan_id:@plan.id)
+			s1.save
+			s1 = Semester.new(term:2,year_id:year1.id,plan_id:@plan.id)
+			s1.save
+			s1 = Semester.new(term:0,year_id:year2.id,plan_id:@plan.id)
+			s1.save
+			s1 = Semester.new(term:1,year_id:year2.id,plan_id:@plan.id)
+			s1.save
+			s1 = Semester.new(term:2,year_id:year2.id,plan_id:@plan.id)
+			s1.save
+			s1 = Semester.new(term:0,year_id:year3.id,plan_id:@plan.id)
+			s1.save
+			s1 = Semester.new(term:1,year_id:year3.id,plan_id:@plan.id)
+			s1.save
+			s1 = Semester.new(term:2,year_id:year3.id,plan_id:@plan.id)
+			s1.save
+			s1 = Semester.new(term:0,year_id:year4.id,plan_id:@plan.id)
+			s1.save
+			s1 = Semester.new(term:1,year_id:year4.id,plan_id:@plan.id)
+			s1.save
+			s1 = Semester.new(term:2,year_id:year4.id,plan_id:@plan.id)
+			s1.save			
+		end
+	  
+	  
         format.html { redirect_to @plan, notice: 'Plan was successfully created.' }
         format.json { render :show, status: :created, location: @plan }
       else
