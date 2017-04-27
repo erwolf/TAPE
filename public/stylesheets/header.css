@@ -30,8 +30,13 @@ td, th{
 	vertical-align: middle;
 }
 
-tr:hover {background-color: #b3f0ff}
+td h2{
+	text-align: left;
+	vertical-align: middle;
+}
+
 tr:nth-child(even) {background-color: #cce0ff}
+tr:hover {background-color: #b3f0ff}
 
 head{
 	margin: 0;
