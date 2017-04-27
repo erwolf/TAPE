@@ -25,9 +25,9 @@
 
 		  <tbody>
 			<% @plans.each do |plan| %>
-			  userName = user.find(plan.user_id)
+			 <%= userName = user.find(plan.user_id) %>
 			  <tr>
-				  <% if current_user.role == "faculty" then %> <td>userName</td><%end%>
+				  <% if current_user.role == "faculty" then %> <td><%= userName %></td><%end%>
 				<td><h2><%= plan.name %></h2></td>
 				<td><%= link_to(raw("<div class='button'>Show</div>"), plan)%></td>
 				<!--td><%= link_to 'Edit', edit_plan_path(plan) %></td-->
