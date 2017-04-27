@@ -73,6 +73,13 @@ li{
 	background-color: #CFD8DC;
 	
 	cursor: pointer;
+	
+	
+}
+
+#validatorContent{
+	overflow-y: auto;
+	height: calc(100% - 25px);	
 }
 
 #validator li:hover{
