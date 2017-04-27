@@ -34,10 +34,10 @@
 				<td><%= link_to(raw("<div class='button'>Delete</div>"), plan, method: :delete, data: {confirm: 'Are you sure?'})%></td>
 			  </tr>
 			<% end %>
-			
-			<tr><td><%= link_to(raw("<div class='button'>New Plan</div>"), new_plan_path)%></td></tr>
 		  </tbody>
 		</table>
+			
+		<%= link_to(raw("<div class='button'>New Plan</div>"), new_plan_path)%>
 
 		<br>
 

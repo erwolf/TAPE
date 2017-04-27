@@ -6,7 +6,7 @@ class CreatePlans < ActiveRecord::Migration[5.0]
       t.integer :catalogYear
       t.string :majorName
       t.integer :currYear
-      t.references :user, foreign_key: true
+      t.references :user, foreign_key: {on_delete: :cascade}
       t.timestamps
     end
   end

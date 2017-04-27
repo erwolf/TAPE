@@ -335,11 +335,30 @@ function toggleSummer(object){
 // function to add a year
 function addYear(){
 	var newYear = parseInt(plan.years[plan.years.length-1].name)+1;
+	
+	var returnData = null;
+	$.ajax({
+		type: "POST",
+		url: window.location.href + "/add_year/?year_id=" + newYear,
+		success: function(data) {			
+			returnData = data;
+		},
+		fail: function() {
+			alert("PROBLEM ADDING YEAR");
+		},
+		async: false		
+	});
+	
 
 	var newFa = new semester("FA " + newYear + "", [], SemEnum.FALL, newYear);
 	var newSp = new semester("SP " + (newYear+1) + "", [], SemEnum.SPRING, newYear+1);
     var newSu = new semester("SU " + (newYear+1) + "", [], SemEnum.SUMMER, newYear+1);
 
+	newFa.id = parseInt(returnData.one);
+	newSp.id = parseInt(returnData.two);
+	newSu.id = parseInt(returnData.three);
+	
+	
 	var yearVar = new year("" + (newYear) + "", [newFa, newSp, newSu]);
 	plan.years[newYear] = yearVar;
 
@@ -352,8 +371,21 @@ function deleteYear(){
 	var yearToDelete = plan.years[plan.years.length-1];
 
 	if(checkEmpty(yearToDelete)){
-		plan.years.pop();
-		displayPlan2(displaySummer);
+		
+		var returnData = null;
+		$.ajax({
+			type: "POST",
+			url: window.location.href + "/remove_year/?year_id=" + yearToDelete.name,
+			success: function(data) {			
+				plan.years.pop();
+				displayPlan2(displaySummer);
+			},
+			fail: function() {
+				alert("PROBLEM REMOVING YEAR");
+			},
+			async: false		
+		});
+		
 	} else{
 		alert("Cannot delete year. Final year is not empty!");
 	}

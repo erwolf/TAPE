@@ -80,10 +80,77 @@ class PlansController < ApplicationController
 			c = SemesterCourse.create(semester_id:@sem_id,course_id:@course_id,plan_id:@plan_id)
 			
 			respond_to do |format|
-				format.html {render :json =>c['id']}
+				if c.save
+					format.html {render :json =>c['id']}
+				end
 			end 
 		end
 	end	 
+  end
+  
+  #POST /plans/1/add_year
+  def add_year
+	@year_id = params[:year_id]
+	@plan_id = params[:plan_id]
+	
+	if @year_id == nil then
+		respond_to do |format|
+			format.html {head :forbidden}
+		end 
+	else
+	
+		if Year.where(:year=>@year_id, :plan_id=>@plan_id).length > 0 then
+			respond_to do |format|
+				format.html {head :forbidden}
+			end 
+		end
+	
+		year = Year.new(year:@year_id,plan_id:@plan_id)
+		year.save
+		
+		s1 = Semester.new(term:0,year_id:year.id,plan_id:@plan_id)
+		s2 = Semester.new(term:1,year_id:year.id,plan_id:@plan_id)
+		s3 = Semester.new(term:2,year_id:year.id,plan_id:@plan_id)
+		
+		s1.save
+		s2.save
+		s3.save
+		
+		returnData = {}
+		returnData[:one] = s1.id
+		returnData[:two] = s2.id
+		returnData[:three] = s3.id
+		
+		respond_to do |format|
+			format.json {render :json => returnData}#TODO}
+		end 
+	end 
+  end
+  
+  #POST /plans/1/remove_year
+  def remove_year
+	@year_id = params[:year_id]
+	@plan_id = params[:plan_id]
+	
+	puts @year_id
+	puts @plan_id
+	
+	if @year_id == nil then
+		respond_to do |format|
+			format.html {head :forbidden}
+		end 
+	else
+	
+		yearDeleted = Year.where(:year=>@year_id, :plan_id=>@plan_id)[0]
+		Semester.where(:year_id=>yearDeleted.id, :plan_id=>@plan_id).delete_all
+		yearDeleted.destroy
+		
+		returnData = @year_id
+		
+		respond_to do |format|
+			format.json {render :json => returnData}#TODO}
+		end 
+	end  
   end
   
   # POST /plans/1/requirements
