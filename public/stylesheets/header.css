@@ -15,8 +15,7 @@ html{
 }
 
 form {
-	text-align: left;
-    vertical-align: middle;	
+	margin: 0 auto;	
 }
 
 body{
