@@ -25,6 +25,14 @@ body{
 	background-color: #e6faff;
 }
 
+html, body{
+	width: 100%;
+}
+
+table{
+	margin: 0 auto;
+}
+
 td, th{
 	text-align: left;
 	vertical-align: middle;
