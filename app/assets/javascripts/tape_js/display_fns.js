@@ -102,6 +102,13 @@ function displayPlan(myPlan, summerShow){
 			for(var k=0; k<courses.length; k++){
 
 				var course = buildCourse(courses[k].codeDept, courses[k].codeNum, courses[k].name, courses[k].credits, courses[k].id, courses[k].semester_course_ruby);
+				
+				if(overlayOn){
+					course.className += " inactive-course";
+				} else{
+					course.className += " active-course";
+				}
+				
 				sumCredits += courses[k].credits;
 				// add the course to the semester
 				content.appendChild(course);
@@ -164,12 +171,13 @@ function makeCoursesDraggable(){
 	$(".course").draggable({
 		revert: true,
 		revertDuration: 0,
-
-		helper: 'clone',
+		stack: ".active-course",
+		//helper: 'clone',
 		cursorAt: {
-			top: 5,
-			left: 5
-		}
+			top: 25,
+			left: 25
+		},
+		
 	});
 
 
@@ -227,6 +235,17 @@ function makeSemestersDroppable(){
 					b.remove();
 					return;
 				}
+			} else if(ui.draggable[0].classList[0] == 'validator-course'){
+				var codeNum = ui.draggable[0].dataset.codeNum;
+				var codeDept = ui.draggable[0].dataset.codeDept;
+				
+				b = buildCourse(codeDept, codeNum, ui.draggable[0].innerHTML, ui.draggable[0].dataset.credits, ui.draggable[0].id, ui.draggable[0].dataset.semester_course_ruby);
+				a.append(b);
+				
+				if(!addToPlan(b, codeDept+"-"+codeNum)){
+					b.remove();
+					return;
+				}				
 			}
 			setupRequirements();
 		}

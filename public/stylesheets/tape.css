@@ -64,6 +64,19 @@ li{
 #validator li {
 	font-size: 18px;
 	height: auto;
+					
+	border: 2pt solid #2C3E50;
+	border-radius: 4pt;
+	margin-top: 5px;
+	padding: 2pt;
+	
+	background-color: #CFD8DC;
+	
+	cursor: pointer;
+}
+
+#validator li:hover{
+	background-color: #EAF0F5;
 }
 
 
@@ -328,11 +341,14 @@ input{
 	justify-content: space-between;
 	align-items: center;
 	position:relative;
-	
-	z-index:1;
-	
+		
 	flex-grow: 0;
+	
+	cursor: pointer;
 }
+
+.top {z-index: 45!important;}
+.bottom {z-index: 1!important;}
 
 .courseTitle{
 	height: auto;

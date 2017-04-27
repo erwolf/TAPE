@@ -139,9 +139,44 @@ class PlansController < ApplicationController
   # POST /plans
   # POST /plans.json
   def create
+  
+	puts "I AM HERE, LOVE ME 1"
+  
     @plan = Plan.new(plan_params)
     @plan.user_id = current_user.id
-    respond_to do |format|
+	
+	puts "I AM HERE, LOVE ME 2"
+	
+	currYear = Time.now.year
+	
+	puts "I AM HERE, LOVE ME 3"
+	puts currYear
+
+	year1 = Year.new(year:currYear,plan_id:@plan.id)
+	year2 = Year.new(year:currYear+1,plan_id:@plan.id)
+	year3 = Year.new(year:currYear+2,plan_id:@plan.id)
+	year4 = Year.new(year:currYear+3,plan_id:@plan.id)
+	
+	puts "I AM HERE, LOVE ME 4"
+	puts @plan.id
+
+	Semester.new(term:0,year_id:year1.id,plan_id:@plan.id)
+	Semester.new(term:1,year_id:year1.id,plan_id:@plan.id)
+	Semester.new(term:2,year_id:year1.id,plan_id:@plan.id)
+	Semester.new(term:0,year_id:year2.id,plan_id:@plan.id)
+	Semester.new(term:1,year_id:year2.id,plan_id:@plan.id)
+	Semester.new(term:2,year_id:year2.id,plan_id:@plan.id)
+	Semester.new(term:0,year_id:year3.id,plan_id:@plan.id)
+	Semester.new(term:1,year_id:year3.id,plan_id:@plan.id)
+	Semester.new(term:2,year_id:year3.id,plan_id:@plan.id)
+	Semester.new(term:0,year_id:year4.id,plan_id:@plan.id)
+	Semester.new(term:1,year_id:year4.id,plan_id:@plan.id)
+	Semester.new(term:2,year_id:year4.id,plan_id:@plan.id)
+	
+	puts "I AM HERE, LOVE ME 5"
+	puts year4.id
+	
+	respond_to do |format|
       if @plan.save
         format.html { redirect_to @plan, notice: 'Plan was successfully created.' }
         format.json { render :show, status: :created, location: @plan }
@@ -184,6 +219,6 @@ class PlansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def plan_params
-      params.require(:plan).permit(:name, :user_id)
+      params.require(:plan).permit(:name, :user_id, :catalogYear, :majorName)
     end
 end

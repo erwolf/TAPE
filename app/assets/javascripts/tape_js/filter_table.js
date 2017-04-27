@@ -141,14 +141,17 @@ function populateValidator(courses){
 			var li = document.createElement("li");
 			li.className = "validator-course";
 			li.id = courses[i].id;
+			li.dataset.codeDept = courses[i].codeDept;
+			li.dataset.codeNum = courses[i].codeNum;
+			li.dataset.credits = courses[i].credits;
 			li.innerHTML = courses[i].name;
+
 			
-			ul.appendChild(li);
-			
+			ul.appendChild(li);			
 		}
 		
 		validator.appendChild(ul);
-		makeListCoursesDraggable();
+		makeValidatorCoursesDraggable();
 		
 	} else {		
 		var dv = document.createElement('div');
@@ -163,7 +166,7 @@ function populateValidator(courses){
 	}
 }
 
-function makeListCoursesDraggable(){
+function makeValidatorCoursesDraggable(){
 	
 	$('.validator-course').draggable({		
 		revert: true,
@@ -172,7 +175,7 @@ function makeListCoursesDraggable(){
 				
 			var a = $(this);
 			var code = a[0].innerHTML;
-			var b = buildCourse(" HI ", 1234, a[0].innerHTML, a[0].id);
+			var b = buildCourse(a[0].dataset.codeDept, a[0].dataset.codeNum, a[0].innerHTML, a[0].dataset.credits, a[0].id);
 			b.style.zIndex = 1000;
 			b.style.width = '100px';
 			b.style.height = '100px';
@@ -183,8 +186,8 @@ function makeListCoursesDraggable(){
 		containment: 'window',
 		appendTo: 'body',
 		cursorAt: {
-			top: 5,
-			left: 5
+			top: 25,
+			left: 25
 		}
 	});
 	

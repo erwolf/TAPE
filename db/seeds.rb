@@ -15,12 +15,20 @@ user1.role = "student"
 user1.save!
 
 user2 = User.new
-user2.login = "pete"
+user2.login = "admin"
 user2.email = "pete@cedarville.edu"
 user2.password = "password"
 user2.password_confirmation = "password"
 user2.role = "admin"
 user2.save!
+
+user3 = User.new
+user3.login = "faculty"
+user3.email = "fac@cedarville.edu"
+user3.password = "password"
+user3.password_confirmation = "password"
+user3.role = "faculty"
+user3.save!
 
 Plan.create(user_id:user1.id, name:"myPlan", currYear:2017, currSemester:1, majorName:"Computer Science", catalogYear:2014) #1
 Plan.create(user_id:user2.id, name:"Plan 2", currYear:2017, currSemester:1, majorName:"Computer Science", catalogYear:2014) #2

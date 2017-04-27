@@ -1,5 +1,7 @@
+<%= render 'layouts/header' %>
+
 <h1>New Plan</h1>
 
 <%= render 'form', plan: @plan %>
 
-<%= link_to 'Back', plans_path %>
+<%= link_to(raw("<div class='button'>Cancel</div>"), plans_path)%>
