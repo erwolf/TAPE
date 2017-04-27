@@ -36,7 +36,6 @@ td h2{
 }
 
 tr:nth-child(even) {background-color: #cce0ff}
-tr:hover {background-color: #b3f0ff}
 
 head{
 	margin: 0;
