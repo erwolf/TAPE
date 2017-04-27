@@ -5,7 +5,7 @@ class PlansController < ApplicationController
   # GET /plans
   # GET /plans.json
   def index
-    if current_user.role == "admin" then
+    if current_user.role == "admin" or current_user.role == "faculty" then
       @plans = Plan.all
     else
       @plans = Plan.where(user_id: current_user.id)
