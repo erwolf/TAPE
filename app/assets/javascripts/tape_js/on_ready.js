@@ -4,13 +4,7 @@ $(document).ready(function() {
 	$(document).on("contextmenu", function() {
 		return false;
 	});
-
-
-	$("#accordion").accordion({
-		heightStyle: "auto",
-		collapsible: false
-	});
-
+	
 	// add functionality to the scrollers (both clicks, and hovers)
 	$("#rightScroller").click(function() {
 		this.iid && clearInterval(this.iid);
@@ -168,9 +162,21 @@ $(document).ready(function() {
 
 	var data = $.getData();
     var plan_data = data['plan'];
-    var course_data = data['courses'];
+    var course_data = data['courses'];	
+	
 	displayPlan(plan_data, true);
     populateFinder(course_data);
+		
+	var requirements_data = getRequirements();
+	
+	populateAccordion(requirements_data.formattedRequirements);
+	
+	$("#accordion").accordion({
+		heightStyle: "fill",
+		collapsible: false
+	});
 
+	populateValidator(requirements_data.neededCourses);	
+	
 	checkScrollers();
 });

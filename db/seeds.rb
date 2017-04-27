@@ -36,7 +36,6 @@ Year.create(year:2017,plan_id:3) #6
 Year.create(year:2018,plan_id:3) #7
 Year.create(year:2019,plan_id:3) #8
 
-
 Semester.create(term:0,year_id:1,plan_id:1) #1
 Semester.create(term:1,year_id:1,plan_id:1) #2
 Semester.create(term:2,year_id:1,plan_id:1) #3
@@ -63,6 +62,11 @@ Semester.create(term:0,year_id:8,plan_id:3) #22
 Semester.create(term:1,year_id:8,plan_id:3) #23
 Semester.create(term:2,year_id:8,plan_id:3) #24
 
+RequirementCategory.create(name:'Computer Science Major Track') #1
+RequirementCategory.create(name:'Required Cognates') #2
+RequirementCategory.create(name:'Computer Science Electives') #3
+RequirementCategory.create(name:'General Education') #4
+
 Course.create(codeDept:"CS",codeNum:"1210",name:"C++ Programming",description:"This course is SO easy!",credits:2) #1
 Course.create(codeDept:"CS",codeNum:"1220",name:"Object-Oriented Design",description:"What's an object? What's the object of this course",credits:3) #2
 Course.create(codeDept:"CS",codeNum:"2210",name:"Java",description:"Man, isn't Java SOOOO much better than C++?",credits:3) #3
@@ -72,64 +76,88 @@ Course.create(codeDept:"CS",codeNum:"3410",name:"Algorithms",description:"Did Al
 Course.create(codeDept:"CS",codeNum:"3510",name:"Compiler",description:"Best course at Cedarville. End of story.",credits:3) #7
 Course.create(codeDept:"CS",codeNum:"3610",name:"Database",description:"I hope I never hear of Hibernate again!",credits:3) #8
 Course.create(codeDept:"CS",codeNum:"4410",name:"Parallel Computing",description:"If you think C++ is bad, try plain C!",credits:3) #9
-Course.create(codeDept:"CS",codeNum:"4710",name:"Computer Graphics",description:"Why do monkeys need engines?",credits:3) #9
-Course.create(codeDept:"CS",codeNum:"4810",name:"Software Engr I",description:"Hey, a real project!",credits:3) #10
-Course.create(codeDept:"CS",codeNum:"4820",name:"Software Engr II",description:"OK, enough of the real project!",credits:4) #11
-Course.create(codeDept:"EGCP",codeNum:"1010",name:"Digital Logic Design",description:"Dr. Kohl is a nice guy!",credits:3) #12
-Course.create(codeDept:"EGCP",codeNum:"3210",name:"Computer Architecture",description:"Love pipelining! Love Booth's algorithm!",credits:3) #13
-Course.create(codeDept:"BTGE",codeNum:"1720",name:"Spiritual Formations",description:"YAY BIBLE!",credits:3) #14
-Course.create(codeDept:"PHYS",codeNum:"2110",name:"Physics I",description:"Dr. Gollmer is tall!",credits:4) #15
-Course.create(codeDept:"PHYS",codeNum:"2120",name:"Physics II",description:"Dr. Gollmer got taller!",credits:4) #16
-Course.create(codeDept:"CS",codeNum:"3350",name:"Foundations of Computer Security",description:"Yay RSA!",credits:3) #17
-Course.create(codeDept:"MATH",codeNum:"2510",name:"Discrete Math",description:"Prob & Stats, only worse!",credits:3) #18
-Course.create(codeDept:"EGCP",codeNum:"4310",name:"Computer Networks",description:"If this class was any more boring it would be Web Apps",credits:3) #19
-Course.create(codeDept:"EGGN",codeNum:"3110",name:"Professional Ethics",description:"The class where you learn to get the job you should already have",credits:3) #20
-Course.create(codeDept:"CS",codeNum:"3220",name:"Web Applications",description:"The most boring class on the planet",credits:3) #21
+Course.create(codeDept:"CS",codeNum:"4710",name:"Computer Graphics",description:"Why do monkeys need engines?",credits:3) #10
+Course.create(codeDept:"CS",codeNum:"4810",name:"Software Engr I",description:"Hey, a real project!",credits:3) #11
+Course.create(codeDept:"CS",codeNum:"4820",name:"Software Engr II",description:"OK, enough of the real project!",credits:4) #12
+Course.create(codeDept:"EGCP",codeNum:"1010",name:"Digital Logic Design",description:"Dr. Kohl is a nice guy!",credits:3) #13
+Course.create(codeDept:"EGCP",codeNum:"3210",name:"Computer Architecture",description:"Love pipelining! Love Booth's algorithm!",credits:3) #14
+Course.create(codeDept:"BTGE",codeNum:"1720",name:"Spiritual Formations",description:"YAY BIBLE!",credits:3) #15
+Course.create(codeDept:"PHYS",codeNum:"2110",name:"Physics I",description:"Dr. Gollmer is tall!",credits:4) #16
+Course.create(codeDept:"PHYS",codeNum:"2120",name:"Physics II",description:"Dr. Gollmer got taller!",credits:4) #17
+Course.create(codeDept:"CS",codeNum:"3350",name:"Foundations of Computer Security",description:"Yay RSA!",credits:3) #18
+Course.create(codeDept:"MATH",codeNum:"2510",name:"Discrete Math",description:"Prob & Stats, only worse!",credits:3) #19
+Course.create(codeDept:"EGCP",codeNum:"4310",name:"Computer Networks",description:"If this class was any more boring it would be Web Apps",credits:3) #20
+Course.create(codeDept:"EGGN",codeNum:"3110",name:"Professional Ethics",description:"The class where you learn to get the job you should already have",credits:3) #22
+Course.create(codeDept:"CS",codeNum:"3220",name:"Web Applications",description:"The most boring class on the planet",credits:3) #22
 
-SemesterCourse.create(semester_id:1,course_id:1)
-SemesterCourse.create(semester_id:1,course_id:12)
-SemesterCourse.create(semester_id:2,course_id:5)
-SemesterCourse.create(semester_id:2,course_id:2)
-SemesterCourse.create(semester_id:2,course_id:14)
-SemesterCourse.create(semester_id:2,course_id:15)
+Requirement.create(course_id:1, requirementcategory_id:1)
+Requirement.create(course_id:2, requirementcategory_id:1)
+Requirement.create(course_id:3, requirementcategory_id:1)
+Requirement.create(course_id:4, requirementcategory_id:1)
+Requirement.create(course_id:5, requirementcategory_id:2)
+Requirement.create(course_id:6, requirementcategory_id:1)
+Requirement.create(course_id:7, requirementcategory_id:1)
+Requirement.create(course_id:8, requirementcategory_id:1)
+Requirement.create(course_id:9, requirementcategory_id:3)
+Requirement.create(course_id:10, requirementcategory_id:3)
+Requirement.create(course_id:11, requirementcategory_id:1)
+Requirement.create(course_id:12, requirementcategory_id:1)
+Requirement.create(course_id:13, requirementcategory_id:2)
+Requirement.create(course_id:14, requirementcategory_id:1)
+Requirement.create(course_id:15, requirementcategory_id:4)
+Requirement.create(course_id:16, requirementcategory_id:2)
+Requirement.create(course_id:17, requirementcategory_id:2)
+Requirement.create(course_id:18, requirementcategory_id:1)
+Requirement.create(course_id:19, requirementcategory_id:2)
+Requirement.create(course_id:20, requirementcategory_id:1)
+Requirement.create(course_id:21, requirementcategory_id:4)
+Requirement.create(course_id:22, requirementcategory_id:1)
 
-SemesterCourse.create(semester_id:4,course_id:3)
-SemesterCourse.create(semester_id:4,course_id:16)
-SemesterCourse.create(semester_id:5,course_id:4)
-SemesterCourse.create(semester_id:5,course_id:17)
-SemesterCourse.create(semester_id:5,course_id:18)
-SemesterCourse.create(semester_id:5,course_id:13)
 
-SemesterCourse.create(semester_id:7,course_id:6)
-SemesterCourse.create(semester_id:7,course_id:19)
-SemesterCourse.create(semester_id:8,course_id:8)
-SemesterCourse.create(semester_id:8,course_id:21)
+SemesterCourse.create(semester_id:1,course_id:1, plan_id:1)
+SemesterCourse.create(semester_id:1,course_id:12, plan_id:1)
+SemesterCourse.create(semester_id:2,course_id:5, plan_id:1)
+SemesterCourse.create(semester_id:2,course_id:2, plan_id:1)
+SemesterCourse.create(semester_id:2,course_id:14, plan_id:1)
+SemesterCourse.create(semester_id:2,course_id:15, plan_id:1)
 
-SemesterCourse.create(semester_id:10,course_id:10)
-SemesterCourse.create(semester_id:10,course_id:11)
-SemesterCourse.create(semester_id:11,course_id:20)
-SemesterCourse.create(semester_id:11,course_id:7)
+SemesterCourse.create(semester_id:4,course_id:3, plan_id:1)
+SemesterCourse.create(semester_id:4,course_id:16, plan_id:1)
+SemesterCourse.create(semester_id:5,course_id:4, plan_id:1)
+SemesterCourse.create(semester_id:5,course_id:17, plan_id:1)
+SemesterCourse.create(semester_id:5,course_id:18, plan_id:1)
+SemesterCourse.create(semester_id:5,course_id:13, plan_id:1)
 
-SemesterCourse.create(semester_id:13,course_id:1)
-SemesterCourse.create(semester_id:13,course_id:12)
-SemesterCourse.create(semester_id:14,course_id:5)
-SemesterCourse.create(semester_id:14,course_id:2)
-SemesterCourse.create(semester_id:14,course_id:14)
-SemesterCourse.create(semester_id:14,course_id:15)
+SemesterCourse.create(semester_id:7,course_id:6, plan_id:1)
+SemesterCourse.create(semester_id:7,course_id:19, plan_id:1)
+SemesterCourse.create(semester_id:8,course_id:8, plan_id:1)
+SemesterCourse.create(semester_id:8,course_id:21, plan_id:1)
 
-SemesterCourse.create(semester_id:16,course_id:3)
-SemesterCourse.create(semester_id:16,course_id:16)
-SemesterCourse.create(semester_id:17,course_id:4)
-SemesterCourse.create(semester_id:17,course_id:17)
-SemesterCourse.create(semester_id:17,course_id:18)
-SemesterCourse.create(semester_id:17,course_id:13)
+SemesterCourse.create(semester_id:10,course_id:10, plan_id:1)
+SemesterCourse.create(semester_id:10,course_id:11, plan_id:1)
+SemesterCourse.create(semester_id:11,course_id:20, plan_id:1)
+SemesterCourse.create(semester_id:11,course_id:7, plan_id:1)
 
-SemesterCourse.create(semester_id:19,course_id:6)
-SemesterCourse.create(semester_id:19,course_id:19)
-SemesterCourse.create(semester_id:20,course_id:8)
-SemesterCourse.create(semester_id:20,course_id:21)
+SemesterCourse.create(semester_id:13,course_id:1, plan_id:3)
+SemesterCourse.create(semester_id:13,course_id:12, plan_id:3)
+SemesterCourse.create(semester_id:14,course_id:5, plan_id:3)
+SemesterCourse.create(semester_id:14,course_id:2, plan_id:3)
+SemesterCourse.create(semester_id:14,course_id:14, plan_id:3)
+SemesterCourse.create(semester_id:14,course_id:15, plan_id:3)
 
-SemesterCourse.create(semester_id:22,course_id:10)
-SemesterCourse.create(semester_id:22,course_id:11)
-SemesterCourse.create(semester_id:23,course_id:20)
-SemesterCourse.create(semester_id:23,course_id:7)
+SemesterCourse.create(semester_id:16,course_id:3, plan_id:3)
+SemesterCourse.create(semester_id:16,course_id:16, plan_id:3)
+SemesterCourse.create(semester_id:17,course_id:4, plan_id:3)
+SemesterCourse.create(semester_id:17,course_id:17, plan_id:3)
+SemesterCourse.create(semester_id:17,course_id:18, plan_id:3)
+SemesterCourse.create(semester_id:17,course_id:13, plan_id:3)
+
+SemesterCourse.create(semester_id:19,course_id:6, plan_id:3)
+SemesterCourse.create(semester_id:19,course_id:19, plan_id:3)
+SemesterCourse.create(semester_id:20,course_id:8, plan_id:3)
+SemesterCourse.create(semester_id:20,course_id:21, plan_id:3)
+
+SemesterCourse.create(semester_id:22,course_id:10, plan_id:3)
+SemesterCourse.create(semester_id:22,course_id:11, plan_id:3)
+SemesterCourse.create(semester_id:23,course_id:20, plan_id:3)
+SemesterCourse.create(semester_id:23,course_id:7, plan_id:3)

@@ -2,12 +2,13 @@ Rails.application.routes.draw do
   resources :plans do
 	post "remove", to: 'plans#remove'
 	post "add", to: 'plans#add'
+	post "requirements", to: 'plans#requirements'
+	#get "req", to: 'plans#requirements'
 	
-	get "remove", to: 'plans#remove'
-	get "add", to: 'plans#add'
   end
   
   devise_for :user, :controllers=>{:registrations=>'registrations'}
   #root 'application#hello'
   root 'plans#index'
+  #Hi Timothy
 end

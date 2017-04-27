@@ -23,8 +23,24 @@ jQuery.extend({
 	}
 });
 
-
-
+function getRequirements(){
+	
+	var returnData = null
+	
+	$.ajax({
+		type: "POST",
+		url: window.location.href + "/requirements",
+		success: function(data) {
+			returnData = data;
+		},
+		fail: function() {
+			returnData = null;
+		},
+		async: false		
+	});
+	
+	return returnData;
+}
 
 function printData(data){
 	console.log(data);

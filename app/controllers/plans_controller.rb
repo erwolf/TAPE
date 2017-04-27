@@ -60,6 +60,7 @@ class PlansController < ApplicationController
   def add
 	@sem_id = params[:sem_id]
 	@course_id = params[:course_id]
+	@plan_id = params[:plan_id]
 
 	if @sem_id == nil or @course_id == nil then
 		respond_to do |format|
@@ -76,13 +77,61 @@ class PlansController < ApplicationController
 			end 
 		else
 		
-			c = SemesterCourse.create(semester_id:@sem_id,course_id:@course_id)
+			c = SemesterCourse.create(semester_id:@sem_id,course_id:@course_id,plan_id:@plan_id)
 			
 			respond_to do |format|
 				format.html {render :json =>c['id']}
 			end 
 		end
 	end	 
+  end
+  
+  # POST /plans/1/requirements
+  def requirements
+  
+	plan_id = params[:plan_id]
+  
+	completePackage = {}
+	
+	completePackage[:formattedRequirements] = []	
+	completePackage[:neededCourses] = []
+
+	requirementCategoryNames = RequirementCategory.all
+	requirementCategoryNames.each { |rc|
+				
+		formattedSection = {}	
+		
+		formattedSection[:name] = rc['name']
+		formattedSection[:courses] = []
+		
+		required_courses = Requirement.where(:requirementcategory_id=>rc['id'])
+		
+		required_courses.each { |course|
+				
+				newCourse = {}
+				
+				actualCourse = Course.find(course['course_id'])
+				
+				newCourse[:id] = course['course_id']
+				newCourse[:name] = actualCourse['name']
+				newCourse[:planned] = true
+				
+				if 	SemesterCourse.where(:plan_id=>	plan_id, :course_id=>actualCourse['id']).length < 1 then
+					completePackage[:neededCourses].push(actualCourse)
+					newCourse[:planned] = false
+				end
+				
+				formattedSection[:courses].push(newCourse)
+		}
+		
+		completePackage[:formattedRequirements].push(formattedSection)
+		
+	}
+
+	respond_to do |format|
+		format.json {render :json =>completePackage}
+	end 
+
   end
     
   

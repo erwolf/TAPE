@@ -181,8 +181,9 @@ function makeCoursesDraggable(){
 				break;
 			case 3:
 				if(removeFromPlan($(this)[0])){
-					$(this).remove();	
-					displayPlan2(displaySummer);
+					$(this).remove();
+
+					setupRequirements();
 				}
 				break;
 			default:
@@ -227,7 +228,7 @@ function makeSemestersDroppable(){
 					return;
 				}
 			}
-			displayPlan2(displaySummer);
+			setupRequirements();
 		}
 	});
 }
@@ -337,6 +338,23 @@ function deleteYear(){
 	} else{
 		alert("Cannot delete year. Final year is not empty!");
 	}
+}
+
+function setupRequirements(){		
+	var requirements_data = getRequirements();
+	populateAccordion(requirements_data.formattedRequirements);
+
+	var active = $('#accordion').accordion('option', 'active');
+	
+	$('#accordion').accordion("destroy");	
+	$("#accordion").accordion({
+		heightStyle: "fill",
+		collapsible: false,
+		active: active
+	});	
+	
+	populateValidator(requirements_data.neededCourses);				
+	displayPlan2(displaySummer);	
 }
 
 

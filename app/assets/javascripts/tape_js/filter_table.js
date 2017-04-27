@@ -85,6 +85,111 @@ function populateFinder(courses){
 	makeTableCoursesDraggable();
 }
 
+function populateAccordion(requirements){
+	
+	var accordion = document.getElementById('accordion');
+	
+	$('#accordion').empty();
+	
+	for(var i=0; i<requirements.length; i++){
+		
+		accordion.innerHTML += "<h3 style='font-weight: bold'>" + requirements[i].name + "</h3>";
+		
+		var ul = document.createElement('ul');
+		
+		for(var j=0; j<requirements[i].courses.length; j++){
+			
+			var li = document.createElement('li');
+			
+			if(requirements[i].courses[j].planned){
+				li.style.color = "green";
+			} else {
+				li.style.color = "red";
+			}
+			
+			li.id = requirements[i].courses[j].id;
+			li.innerHTML = requirements[i].courses[j].name;
+			
+			ul.append(li);
+		}
+		
+		accordion.appendChild(ul);
+	}
+}
+
+function populateValidator(courses){
+	
+	var validator = document.getElementById('validatorContent');
+	
+	$('#validatorContent').empty();
+	
+	if(courses.length > 0){
+		
+		var dv = document.createElement('div');
+		dv.style.color = "red";
+		dv.style.fontWeight = "bold";
+		dv.style.padding = "4px";
+		dv.style.fontSize = "15pt";
+		dv.style.borderBottom = "2pt solid red";
+		dv.style.marginBottom = "4px";
+		dv.innerHTML = "PROBLEM!<br>You still need to take these courses:";		
+		validator.appendChild(dv);	
+	
+		var ul = document.createElement('ul');
+		for(var i=0; i<courses.length; i++){
+			
+			var li = document.createElement("li");
+			li.className = "validator-course";
+			li.id = courses[i].id;
+			li.innerHTML = courses[i].name;
+			
+			ul.appendChild(li);
+			
+		}
+		
+		validator.appendChild(ul);
+		makeListCoursesDraggable();
+		
+	} else {		
+		var dv = document.createElement('div');
+		dv.style.color = "green";
+		dv.style.fontWeight = "bold";
+		dv.style.padding = "4px";
+		dv.style.fontSize = "15pt";
+		dv.style.borderBottom = "2pt solid green";
+		dv.style.marginBottom = "4px";
+		dv.innerHTML = "Your plan meets all the requirements!";
+		validator.appendChild(dv);		
+	}
+}
+
+function makeListCoursesDraggable(){
+	
+	$('.validator-course').draggable({		
+		revert: true,
+		revertDuration: 0,
+		helper: function() {
+				
+			var a = $(this);
+			var code = a[0].innerHTML;
+			var b = buildCourse(" HI ", 1234, a[0].innerHTML, a[0].id);
+			b.style.zIndex = 1000;
+			b.style.width = '100px';
+			b.style.height = '100px';
+			b.style.textAlign = 'center';
+			return b;
+		},
+		scroll: false,
+		containment: 'window',
+		appendTo: 'body',
+		cursorAt: {
+			top: 5,
+			left: 5
+		}
+	});
+	
+}
+
 function makeTableCoursesDraggable(){
 	
 	$('.catalog-course').draggable({		

@@ -1,0 +1,2 @@
+class RequirementCategory < ApplicationRecord
+end

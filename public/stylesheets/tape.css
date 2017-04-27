@@ -52,12 +52,20 @@ a:hover{
 
 li{
 	list-style: none;
-    height: 25px;
+    height: 16px;
     text-align: left;
-    line-height: 25px;
     background: none;
     border-radius: 4pt;
+	font-size: 12px;
+	
+	
 }
+
+#validator li {
+	font-size: 18px;
+	height: auto;
+}
+
 
 header {
 	background-color: #f1f1f1;
@@ -677,6 +685,13 @@ table.tablesorter thead tr .headerSortDown {
 	background-image: url(../images/desc.gif);
 }
 
+tr{
+	height: 25px;
+	margin: 4px 0px;
+	
+	font-size: 15px;	
+}
+
 #finderTable tr.even{
 	background-color: #eaf0f5;	
 	color: black;
@@ -715,6 +730,18 @@ table.tablesorter thead tr .headerSortDown {
 
 /* ACCORDION STYLES */
 #accordion {
+	
+}
+
+ul{
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow-y: auto;
+	overflow-x: hidden;
+	font-size: 5pt;
+	
+	margin: 0px;
+	padding: 0.1em 0.5em;
 }
 
 .ui-state-default{
@@ -740,26 +767,9 @@ table.tablesorter thead tr .headerSortDown {
 	background: repeating-linear-gradient(0deg, #b4c8d5, #cad8e1 50%, #b4c8d5 100%);
 }
 
-/* KBB FORM */
-#kbbWrapper{
-	display: flex;
-	justify-content: space-between;
-	flex-direction: column;
-	align-items: center
-}
-
-#kbbForm{
-	text-align: center;
-}
-
-#carBox{
-	border-radius: 4pt;
-	background:#fafafa;
-	width: 100%;
-	height: 150px;
-	margin: 10px 0px;
+.ui-accordion .ui-accordion-content{
+	padding: 1em .5em;
 	
-	text-align: center;
 }
 
 .styled-select{

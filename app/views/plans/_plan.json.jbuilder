@@ -1,4 +1,3 @@
-
 formattedPlan = {}
 formattedPlan[:catalogYear] = plan['catalogYear']
 formattedPlan[:currYear] = plan['currYear']
@@ -58,8 +57,10 @@ years.each { |year|
     formattedPlan[:years][formattedYear[:name]] = formattedYear
 }
 
-formattedCourses = Course.all 
+formattedCourses = Course.all
 
 json.plan formattedPlan
 json.courses formattedCourses
+#json.requirements formattedRequirements
+
 json.url plan_url(plan, format: :json)
