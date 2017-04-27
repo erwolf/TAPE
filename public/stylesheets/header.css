@@ -21,8 +21,8 @@ body{
 	padding: 0;	
 	height: 100%;
 	font-family: Arial, Helvetica;
-    font-size: 12px;
-	
+    	font-size: 12px;
+	background-color: #ccebff
 }
 
 td, th{
@@ -30,8 +30,8 @@ td, th{
 	vertical-align: middle;
 }
 
-tr:hover {background-color: #f5f5f5}
-tr:nth-child(even) {background-color: #f2f2f2}
+tr:hover {background-color: #b3f0ff}
+tr:nth-child(even) {background-color: #cce0ff}
 
 head{
 	margin: 0;
