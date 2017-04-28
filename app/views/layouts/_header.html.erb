@@ -3,8 +3,8 @@
 <header>
 	<h1 class= 'websiteTitle'> NEWTAPE </h1>
 	<% if user_signed_in?%>
-		<h1 class= 'welcome'> Welcome, <%= current_user.login %></h1>
 		<%= link_to(raw("<div class='button' style: 'position:relative; float:right;'>Sign Out </div>"), destroy_user_session_path, :method=>:delete)%>
+		<h1 class= 'welcome'> Welcome, <%= current_user.login %></h1>
 	<% else %>
 		<%= link_to(raw("<div class='button'>Sign Up </div>"), new_user_registration_path, :method=>:get)%>
 	<% end %>
