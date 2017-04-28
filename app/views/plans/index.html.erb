@@ -29,9 +29,9 @@
 			  <tr>
 				  <% if current_user.role == "faculty" then %> <td><%= User.find(plan.user_id).login %></td><%end%>
 				<td><h2><%= plan.name %></h2></td>
-				<td><%= link_to(raw("<div class='button'>Show</div>"), plan)%></td>
+				<td><%= link_to(raw("<div class='button' id= 'formButton'>Show</div>"), plan)%></td>
 				<!--td><%= link_to 'Edit', edit_plan_path(plan) %></td-->
-				<td><%= link_to(raw("<div class='button'>Delete</div>"), plan, method: :delete, data: {confirm: 'Are you sure?'})%></td>
+				<td><%= link_to(raw("<div class='button' id= 'formButton'>Delete</div>"), plan, method: :delete, data: {confirm: 'Are you sure?'})%></td>
 			  </tr>
 			<% end %>
 		  </tbody>
