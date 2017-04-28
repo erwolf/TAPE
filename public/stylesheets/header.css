@@ -102,6 +102,8 @@ h3{
 	margin: 0;
 	width: 200px;
 	float: left;
+	top: 10px;
+    position: relative;
 }
 .button{
 	display: inline-block;
@@ -118,7 +120,7 @@ h3{
 	float: right;
 	border-radius: 4px;
 	margin: 5px;
-	    top: -10px;
+	    top: 10px;
     position: relative;
 }
 .button:hover{
