@@ -143,6 +143,10 @@ h3{
 	float: none;
 }
 
+#formButton {
+	top: 0;
+}
+
 .button-disabled{
 	background-color: black;
 }
