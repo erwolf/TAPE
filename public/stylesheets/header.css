@@ -102,7 +102,7 @@ h3{
 	margin: 0;
 	width: 200px;
 	float: left;
-	top: 10px;
+	bottom: 10px;
     position: relative;
 }
 .button{
