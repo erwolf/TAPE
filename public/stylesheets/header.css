@@ -52,7 +52,7 @@ td h2{
 }
 
 tr:nth-child(even) {background-color: #cce0ff}
-tr:nth-child(odd) {background-color: #FCFBE3}
+tr:nth-child(odd) {background-color: white}
 
 head{
 	margin: 0;
