@@ -106,6 +106,14 @@ h3{
     position: relative;
     font-size: 25pt;
 }
+
+.welcome {
+	margin: 0;
+	position: relative;
+	float: right;
+	top: 25px;
+	font-size: 18pt;
+}
 .button{
 	display: inline-block;
 	text-align: center;
