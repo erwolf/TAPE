@@ -83,6 +83,7 @@ header {
 	flex-direction: row;
 	height: 60px;
 	margin: 0;
+	display: inline-block;
 }
 
 h1, h2{
@@ -98,7 +99,9 @@ button{
 h3{
 }
 .websiteTitle {
-	margin: 0;	
+	margin: 0;
+	width: 200px;
+	float: left;
 }
 .button{
 	display: inline-block;
@@ -115,6 +118,8 @@ h3{
 	float: right;
 	border-radius: 4px;
 	margin: 5px;
+	    top: -10px;
+    position: relative;
 }
 .button:hover{
 	background-color: #42586E;
