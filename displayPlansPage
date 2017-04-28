@@ -32,7 +32,7 @@
 			  </tr>
 			<% end %>
 			
-			<tr><td><%= link_to(raw("<div class='button'>New Plan</div>"), new_plan_path)%></td></tr>
+			<tr><td><%= link_to(raw("<div class='button' id= 'newPlanButton'>New Plan</div>"), new_plan_path)%></td></tr>
       <tr><td><% if current_user.role == "admin" then %> <div class="admin-section"> YOU ARE AN ADMIN </div><%end%> </td></tr>
 		  </tbody>
 		</table>
