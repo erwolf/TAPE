@@ -97,6 +97,9 @@ button{
 
 h3{
 }
+#websiteTitle {
+	margin: 0;	
+}
 .button{
 	display: inline-block;
 	text-align: center;
