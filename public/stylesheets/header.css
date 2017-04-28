@@ -48,6 +48,7 @@ td, th{
 td h2{
 	vertical-align: middle;
 	padding: 0px;
+	text-transform: capitalize;
 }
 
 tr:nth-child(even) {background-color: #cce0ff}
