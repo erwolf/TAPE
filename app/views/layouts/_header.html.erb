@@ -1,8 +1,7 @@
 <%= stylesheet_link_tag('header.css') %>
 
 <header>
-	<h1> Welcome to the Academic Planning Tool </h1>
-	<br>
+	<h1 class= 'websiteTitle'> Welcome to the Academic Planning Tool </h1>
 	<% if user_signed_in?%>
 		<h2> Welcome, <%= current_user.login %></h2>
 		<%= link_to(raw("<div class='button' style: 'position:relative; float:right;'>Sign Out </div>"), destroy_user_session_path, :method=>:delete)%>
