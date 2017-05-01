@@ -7,6 +7,12 @@ class PlansController < ApplicationController
   def index
     if current_user.role == "admin" or current_user.role == "faculty" then
       @plans = Plan.all.order('user_id')
+	  
+	  if current_user.role == "faculty" then
+		@users = User.where(:role=>'student').order('login')
+	  else
+		@users = User.all.order('login')
+	  end
     else
       @plans = Plan.where(user_id: current_user.id)
     end 

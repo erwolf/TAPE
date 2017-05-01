@@ -1,48 +1,55 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 user1 = User.new
-user1.login = "joe"
-user1.email = "joe@cedarville.edu"
+user1.login = "timothyglensmith"
+user1.email = "timothyglensmith@cedarville.edu"
 user1.password = "password"
 user1.password_confirmation = "password"
 user1.role = "student"
 user1.save!
 
 user2 = User.new
-user2.login = "admin"
-user2.email = "pete@cedarville.edu"
+user2.login = "ewolf"
+user2.email = "ewolf@cedarville.edu"
 user2.password = "password"
 user2.password_confirmation = "password"
-user2.role = "admin"
+user2.role = "student"
 user2.save!
 
 user3 = User.new
-user3.login = "faculty"
-user3.email = "fac@cedarville.edu"
+user3.login = "nshinabarger"
+user3.email = "nshinabarger@cedarville.edu"
 user3.password = "password"
 user3.password_confirmation = "password"
-user3.role = "faculty"
+user3.role = "student"
 user3.save!
 
-Plan.create(user_id:user1.id, name:"myPlan", currYear:2017, currSemester:1, majorName:"Computer Science", catalogYear:2014) #1
-Plan.create(user_id:user2.id, name:"Plan 2", currYear:2017, currSemester:1, majorName:"Computer Science", catalogYear:2014) #2
-Plan.create(user_id:user1.id, name:"The Super Duper Cool Plan", currYear:2017, currSemester:1, majorName:"Computer Science", catalogYear:2014) #3
+user4 = User.new
+user4.login = "drwhite"
+user4.email = "thomaswhite@cedarville.edu"
+user4.password = "password"
+user4.password_confirmation = "password"
+user4.role = "admin"
+user4.save!
+
+user5 = User.new
+user5.login = "gallaghd"
+user5.email = "gallaghd@cedarville.edu"
+user5.password = "password"
+user5.password_confirmation = "password"
+user5.role = "faculty"
+user5.save!
+
+Plan.create(user_id:user2.id, name:"Emily's Entirely Spaceless Plan", currYear:2017, currSemester:1, majorName:"Computer Science", catalogYear:2014) #2
+Plan.create(user_id:user3.id, name:"Noah's Cool Plan", currYear:2017, currSemester:1, majorName:"Computer Science", catalogYear:2014) #3
 
 Year.create(year:2016,plan_id:1) #1
 Year.create(year:2017,plan_id:1) #2
 Year.create(year:2018,plan_id:1) #3
 Year.create(year:2019,plan_id:1) #4
 
-Year.create(year:2016,plan_id:3) #5
-Year.create(year:2017,plan_id:3) #6
-Year.create(year:2018,plan_id:3) #7
-Year.create(year:2019,plan_id:3) #8
+Year.create(year:2016,plan_id:2) #5
+Year.create(year:2017,plan_id:2) #6
+Year.create(year:2018,plan_id:2) #7
+Year.create(year:2019,plan_id:2) #8
 
 Semester.create(term:0,year_id:1,plan_id:1) #1
 Semester.create(term:1,year_id:1,plan_id:1) #2
@@ -57,18 +64,18 @@ Semester.create(term:0,year_id:4,plan_id:1) #10
 Semester.create(term:1,year_id:4,plan_id:1) #11
 Semester.create(term:2,year_id:4,plan_id:1) #12
 
-Semester.create(term:0,year_id:5,plan_id:3) #13
-Semester.create(term:1,year_id:5,plan_id:3) #14
-Semester.create(term:2,year_id:5,plan_id:3) #15
-Semester.create(term:0,year_id:6,plan_id:3) #16
-Semester.create(term:1,year_id:6,plan_id:3) #17
-Semester.create(term:2,year_id:6,plan_id:3) #18
-Semester.create(term:0,year_id:7,plan_id:3) #19
-Semester.create(term:1,year_id:7,plan_id:3) #20
-Semester.create(term:2,year_id:7,plan_id:3) #21
-Semester.create(term:0,year_id:8,plan_id:3) #22
-Semester.create(term:1,year_id:8,plan_id:3) #23
-Semester.create(term:2,year_id:8,plan_id:3) #24
+Semester.create(term:0,year_id:5,plan_id:2) #13
+Semester.create(term:1,year_id:5,plan_id:2) #14
+Semester.create(term:2,year_id:5,plan_id:2) #15
+Semester.create(term:0,year_id:6,plan_id:2) #16
+Semester.create(term:1,year_id:6,plan_id:2) #17
+Semester.create(term:2,year_id:6,plan_id:2) #18
+Semester.create(term:0,year_id:7,plan_id:2) #19
+Semester.create(term:1,year_id:7,plan_id:2) #20
+Semester.create(term:2,year_id:7,plan_id:2) #21
+Semester.create(term:0,year_id:8,plan_id:2) #22
+Semester.create(term:1,year_id:8,plan_id:2) #23
+Semester.create(term:2,year_id:8,plan_id:2) #24
 
 RequirementCategory.create(name:'Computer Science Major Track') #1
 RequirementCategory.create(name:'Required Cognates') #2
@@ -146,26 +153,26 @@ SemesterCourse.create(semester_id:10,course_id:11, plan_id:1)
 SemesterCourse.create(semester_id:11,course_id:20, plan_id:1)
 SemesterCourse.create(semester_id:11,course_id:7, plan_id:1)
 
-SemesterCourse.create(semester_id:13,course_id:1, plan_id:3)
-SemesterCourse.create(semester_id:13,course_id:12, plan_id:3)
-SemesterCourse.create(semester_id:14,course_id:5, plan_id:3)
-SemesterCourse.create(semester_id:14,course_id:2, plan_id:3)
-SemesterCourse.create(semester_id:14,course_id:14, plan_id:3)
-SemesterCourse.create(semester_id:14,course_id:15, plan_id:3)
+SemesterCourse.create(semester_id:13,course_id:1, plan_id:2)
+SemesterCourse.create(semester_id:13,course_id:12, plan_id:2)
+SemesterCourse.create(semester_id:14,course_id:5, plan_id:2)
+SemesterCourse.create(semester_id:14,course_id:2, plan_id:2)
+SemesterCourse.create(semester_id:14,course_id:14, plan_id:2)
+SemesterCourse.create(semester_id:14,course_id:15, plan_id:2)
 
-SemesterCourse.create(semester_id:16,course_id:3, plan_id:3)
-SemesterCourse.create(semester_id:16,course_id:16, plan_id:3)
-SemesterCourse.create(semester_id:17,course_id:4, plan_id:3)
-SemesterCourse.create(semester_id:17,course_id:17, plan_id:3)
-SemesterCourse.create(semester_id:17,course_id:18, plan_id:3)
-SemesterCourse.create(semester_id:17,course_id:13, plan_id:3)
+SemesterCourse.create(semester_id:16,course_id:3, plan_id:2)
+SemesterCourse.create(semester_id:16,course_id:16, plan_id:2)
+SemesterCourse.create(semester_id:17,course_id:4, plan_id:2)
+SemesterCourse.create(semester_id:17,course_id:17, plan_id:2)
+SemesterCourse.create(semester_id:17,course_id:18, plan_id:2)
+SemesterCourse.create(semester_id:17,course_id:13, plan_id:2)
 
-SemesterCourse.create(semester_id:19,course_id:6, plan_id:3)
-SemesterCourse.create(semester_id:19,course_id:19, plan_id:3)
-SemesterCourse.create(semester_id:20,course_id:8, plan_id:3)
-SemesterCourse.create(semester_id:20,course_id:21, plan_id:3)
+SemesterCourse.create(semester_id:19,course_id:6, plan_id:2)
+SemesterCourse.create(semester_id:19,course_id:19, plan_id:2)
+SemesterCourse.create(semester_id:20,course_id:8, plan_id:2)
+SemesterCourse.create(semester_id:20,course_id:21, plan_id:2)
 
-SemesterCourse.create(semester_id:22,course_id:10, plan_id:3)
-SemesterCourse.create(semester_id:22,course_id:11, plan_id:3)
-SemesterCourse.create(semester_id:23,course_id:20, plan_id:3)
-SemesterCourse.create(semester_id:23,course_id:7, plan_id:3)
+SemesterCourse.create(semester_id:22,course_id:10, plan_id:2)
+SemesterCourse.create(semester_id:22,course_id:11, plan_id:2)
+SemesterCourse.create(semester_id:23,course_id:20, plan_id:2)
+SemesterCourse.create(semester_id:23,course_id:7, plan_id:2)

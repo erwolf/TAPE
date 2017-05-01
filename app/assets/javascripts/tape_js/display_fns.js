@@ -15,6 +15,10 @@ var plan;
 
 /* FUNCTION DEFINITIONS */
 // function to display the plan in the #planner div
+function displayPlan3(){
+	displayPlan2(displaySummer);	
+}
+
 function displayPlan2(summerShow){
 	displayPlan(plan, summerShow);
 }
