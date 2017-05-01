@@ -9,9 +9,9 @@ class PlansController < ApplicationController
       @plans = Plan.all.order('user_id')
 	  
 	  if current_user.role == "faculty" then
-		@users = User.where(:role=>'student').order('login')
+		@users = User.where(:role=>'student').order('name')
 	  else
-		@users = User.all.order('login')
+		@users = User.all.order('name')
 	  end
     else
       @plans = Plan.where(user_id: current_user.id)

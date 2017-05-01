@@ -22,10 +22,9 @@
 			  </thead>
 
 			  <tbody>
-				<% @plans.each do |plan| %>
-				 
+				<% @plans.each do |plan| %>				 
 				  <tr>
-					<% if current_user.role == "faculty" then %> <td><h2><%= User.find(plan.user_id).login %></h2></td><%end%>
+					<% if current_user.role == "faculty" then %> <td><h2><%= User.find(plan.user_id).name %></h2></td><%end%>
 					<td><h2><%= plan.name %></h2></td>
 					<td><%= link_to(raw("<div class='button' id= 'formButton'>Show</div>"), plan)%></td>
 					<!--td><%= link_to 'Edit', edit_plan_path(plan) %></td-->
@@ -50,7 +49,7 @@
 				  <tbody>
 					<% @users.each do |user| %>					 
 					  <tr>
-						<td><%= user.login %></td>
+						<td><%= user.name %></td>
 					  </tr>
 					<% end %>
 				  </tbody>
@@ -68,7 +67,7 @@
 				  <tbody>
 					<% @users.each do |user| %>					 
 					  <tr>
-						<td><%= user.login %></td>
+						<td><%= user.name %></td>
 					  </tr>
 					<% end %>
 				  </tbody>

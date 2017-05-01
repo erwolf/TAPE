@@ -1,5 +1,6 @@
 user1 = User.new
 user1.login = "timothyglensmith"
+user1.name = "Timothy Smith"
 user1.email = "timothyglensmith@cedarville.edu"
 user1.password = "password"
 user1.password_confirmation = "password"
@@ -8,6 +9,7 @@ user1.save!
 
 user2 = User.new
 user2.login = "ewolf"
+user2.name = "Emily Wolf"
 user2.email = "ewolf@cedarville.edu"
 user2.password = "password"
 user2.password_confirmation = "password"
@@ -16,6 +18,7 @@ user2.save!
 
 user3 = User.new
 user3.login = "nshinabarger"
+user3.name = "Noah Shinabarger"
 user3.email = "nshinabarger@cedarville.edu"
 user3.password = "password"
 user3.password_confirmation = "password"
@@ -24,6 +27,7 @@ user3.save!
 
 user4 = User.new
 user4.login = "drwhite"
+user4.name = "Thomas White"
 user4.email = "thomaswhite@cedarville.edu"
 user4.password = "password"
 user4.password_confirmation = "password"
@@ -32,6 +36,7 @@ user4.save!
 
 user5 = User.new
 user5.login = "gallaghd"
+user5.name = "Overlord Gallagher"
 user5.email = "gallaghd@cedarville.edu"
 user5.password = "password"
 user5.password_confirmation = "password"
